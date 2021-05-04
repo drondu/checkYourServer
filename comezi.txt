@@ -4,3 +4,8 @@ start live server pe index.html
 
 in loc de year e timestamp si in loc de temperature e harddisk
 
+2019  git status
+ 2020  git add *
+ 2021  git commit -m "com"
+ 2022  git push origin webTool 
+
