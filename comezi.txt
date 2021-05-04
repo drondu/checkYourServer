@@ -1,0 +1,5 @@
+de fiecare data cand vreau sa pornesc serverul:
+npm run dev-start
+start live server pe index.html
+
+in loc de year e timestamp si in loc de temperature e harddisk
