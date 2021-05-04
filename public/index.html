@@ -19,7 +19,7 @@
             <div class="col-6_chart">
                 <label>Choose axe X parameter:</label>
 
-                <select id="axeX">
+                <select name="axeX" id="axeX">
                     <option value="temperature">Temperature</option>
                     <option value="time">Time</option>
                 </select>
@@ -29,11 +29,12 @@
             <div class="col-6_chart">
                 <p></p>
                 <label>Choose axe Y parameter:</label>
-
-                <select id="axeY">
-                    <option value="temperature">Temperature</option>
-                    <option value="time">Time</option>
-                </select>
+                <form method="POST" action="index.php?action=contact_agent&axeY=">
+                    <select name="axeY" id="axeY">
+                        <option value="temperature">Temperature</option>
+                        <option value="time">Time</option>
+                    </select>
+                </form>
             </div>
         </div>
         <div class="row">
@@ -76,7 +77,10 @@
             const axeX = document.getElementById('axeX').value;
             const axeY = document.getElementById('axeY').value;
 
-            
+            if(axeX == axeY) 
+                alert("sometext"); 
+            chartIt1(axeX, axeY);
+
 
             // const data = {axeX,axeY} ;
             // const options = {
