@@ -1,10 +1,28 @@
 
 var dateType = {month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-var randomColor = Math.floor(Math.random()*16777215).toString(16);
+var randomColor = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
 
+function labelsX(xAxes){
+    if(xAxes == "temperature") 
+        return 'Temperature[°C]';
+    if(xAxes == "time") 
+        return 'Date[dd/mm/yy hh/mm/ss]';
+    if(xAxes == "used") 
+        return 'Memory used[GB]';
+    if(xAxes == "available") 
+        return 'Memory available[GB]';
+}
 
-
-
+function labelsY(yAxes){
+    if(yAxes == "temperature") 
+        return 'Temperature[°C]';
+    if(yAxes == "time") 
+        return 'Date[dd/mm/yy hh/mm/ss]';
+    if(yAxes == "used") 
+        return 'Memory used[GB]';
+    if(yAxes == "available") 
+        return 'Memory available[GB]';
+}
 async function axes(obj, xAxes,yAxes){
     var res = await fetch(baseURL + '/api');
     var data = await res.json();
@@ -27,67 +45,18 @@ async function axes(obj, xAxes,yAxes){
         if(yAxes == "temperature") temp.ys.push(temperature);
         if(yAxes == "available") temp.ys.push(available);
         
-
-        // if(xAxes == "time" && yAxes == "temperature"){
-        //     xs.push(time);
-        //     ys.push(temperature);
-        // }
-        // else if(xAxes == "time" && yAxes == "available"){
-        //     xs.push(time);
-        //     ys.push(available);   
-        // }
-        // else if(xAxes == "time" && yAxes == "used"){
-        //     xs.push(time);
-        //     ys.push(used);   
-        // }
-        // else if(xAxes == "temperature" && yAxes == "time"){
-        //     xs.push(temperature);
-        //     ys.push(time);
-        // }
-        // else if(xAxes == "temperature" && yAxes == "available"){
-        //     xs.push(temperature);
-        //     ys.push(available);  
-        // }
-        // else if(xAxes == "temperature" && yAxes == "used"){
-        //     xs.push(temperature);
-        //     ys.push(used); 
-        // }
-        // else if(xAxes == "used" && yAxes == "time"){
-        //     xs.push(used);
-        //     ys.push(time);
-        // }
-        // else if(xAxes == "used" && yAxes == "available"){
-        //     xs.push(used);
-        //     ys.push(available);  
-        // }
-        // else if(xAxes == "used" && yAxes == "temperature"){
-        //     xs.push(used);
-        //     ys.push(temperature); 
-        // }
-        // else if(xAxes == "available" && yAxes == "time"){
-        //     xs.push(available);
-        //     ys.push(time);
-        // }
-        // else if(xAxes == "available" && yAxes == "used"){
-        //     xs.push(available);
-        //     ys.push(used);  
-        // }
-        // else if(xAxes == "available" && yAxes == "temperature"){
-        //     xs.push(available);
-        //     ys.push(temperature); 
-        // }
          console.log("Temperature: " + temperature + " " + "Time: " + time + " " + "Memory used: " + used + " " + "Memory Available: " + available); 
     }
     obj = temp;
 }
 
 async function chartIt1(xAxes,yAxes){
-    const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066'];
-    //const colors1 = ['#'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor,'+'+randomColor]
-
+    const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
+   
     let obj = {xs: [], ys:[]};
 
     await axes(obj, xAxes,yAxes);
+
     
     console.log("in chartIT: " + obj.xs);
 
@@ -100,12 +69,15 @@ async function chartIt1(xAxes,yAxes){
             data: {
                 labels: obj.xs,
                 datasets: [{
-                    label: 'a',
                     data: obj.ys,
-                    fill: true,
+                    label: false,
+                    fill: false,
                     backgroundColor: colors1,
-                    borderColor: colors1,
-                    borderWidth: 1
+                    borderColor: '#000000',
+                    pointBackgroundColor: 'colors1',
+                    borderWidth: 1,
+                    pointRadius: 5,
+                    lineTension: 0,           
                 }]
             },
             options:{
@@ -114,31 +86,47 @@ async function chartIt1(xAxes,yAxes){
                         ticks:{
                             callback: function(value){
                                 if(yAxes == "temperature") 
-                                    return  value + '°C';
+                                    return  value;
                                 else if(yAxes == "time") 
                                     return new Date(value).toLocaleDateString([], dateType);
                                 else if(yAxes == "used") 
-                                    return 'Memory used: ' + value + 'B';
+                                    return value;
                                 else if(yAxes == "available") 
-                                    return 'Memory available: ' + value + 'B';
+                                    return value;
                             }
-                        }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            fontSize: 18,
+                            labelString: labelsY(yAxes)
+                        }  
                     }],
                     xAxes:[{
                             ticks:{
                                 callback: function(value) { 
                                     if(xAxes == "temperature") 
-                                        return  value + '°C';
+                                        return  value;
                                     else if(xAxes == "time") 
                                         return new Date(value).toLocaleDateString([], dateType);
                                     else if(xAxes == "used") 
-                                        return 'Memory used: ' + value + 'B';
+                                        return value;
                                     else if(xAxes == "available") 
-                                        return 'Memory available: ' + value + 'B';
-                                }
-                            }
+                                        return value;
+                                },
+                                maxRotation: 90,
+                                minRotation: 20
+                            },
+                            scaleLabel: {
+                                display: true,
+                                fontSize: 18,
+                                labelString: labelsX(xAxes)
+                            }  
                     }]
+                },
+                legend:{
+                    display:false
                 }
+                
             }
     });
 }

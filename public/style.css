@@ -1,6 +1,15 @@
 input {
     margin-left: 10px;
 }
-container_input{
-    margin-left: 100px;
+.container_input{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.row{
+    margin-top: 1%;
+}
+.container_graphs{
+    margin-top: 5%;
+    margin-left: 2%;
 }
