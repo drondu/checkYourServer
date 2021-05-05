@@ -22,6 +22,8 @@
                 <select name="axeX" id="axeX">
                     <option value="temperature">Temperature</option>
                     <option value="time">Time</option>
+                    <option value="used">Used memory</option>
+                    <option value="available">Available</option>
                 </select>
             </div>
         </div>
@@ -33,6 +35,8 @@
                     <select name="axeY" id="axeY">
                         <option value="temperature">Temperature</option>
                         <option value="time">Time</option>
+                        <option value="used">Used memory</option>
+                        <option value="available">Available memory</option>
                     </select>
                 </form>
             </div>
@@ -44,24 +48,22 @@
             </div>
         </div>
     </div>
-
-    
     
     <div class="container_graphs">
         <div class="row">
             <div class="col-6 chart">
-                <canvas id="chart1" width="600" height="300"></canvas>
+                <canvas id="chart1" width="2000" height="1000"></canvas>
             </div>
             <div class="col-6 charts">
-                <canvas id="chart2" width="600" height="300"></canvas>
+                <canvas id="chart2" width="1000" height="500"></canvas>
             </div>
         </div>
         <div class="row">
             <div class="col-6 chart">
-                <canvas id="chart3" width="600" height="300"></canvas>
+                <canvas id="chart3" width="1000" height="300"></canvas>
             </div>
             <div class="col-6 charts">
-                <canvas id="chart4" width="600" height="300"></canvas>
+                <canvas id="chart4" width="1000" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -77,9 +79,14 @@
             const axeX = document.getElementById('axeX').value;
             const axeY = document.getElementById('axeY').value;
 
-            if(axeX == axeY) 
-                alert("sometext"); 
-            chartIt1(axeX, axeY);
+            if (axeX == axeY){
+                alert("Axes must be different. Please change your choises."); 
+            }
+            else{
+                chartIt1(axeX, axeY);
+            } 
+            
+            
 
 
             // const data = {axeX,axeY} ;

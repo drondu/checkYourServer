@@ -12,17 +12,14 @@ app.use(express.json());
 const database = new Datastore({filename: 'database.db', autoload: true });
 database.loadDatabase();
 
-
 app.post('/api', (request, response) => {
   const data = request.body;
   const timestamp = Date.now();
   data.timestamp = timestamp;
   console.log(data);
-
   database.insert(data);
   response.json(data);
 });
-
 
 app.get('/api', (request, response) => {
 	database.find({})
