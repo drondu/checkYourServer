@@ -16,8 +16,8 @@ val = ''
 for el in line:
 	if el.isdigit():
 		val += el
-		# print(val)
-		chars = string.ascii_letters + string.digits
+
+chars = string.ascii_letters + string.digits
 
 count = 0
 line = fin.readline()
@@ -25,15 +25,25 @@ for el in line.split():
 	if count == 0:
 		name = el
 	if count == 2:
-		used = el
+		el.rstrip()
+		temp = ''
+		for nb in el:
+			if nb.isdigit():
+				temp += nb		
+		used = temp
 	if count == 3:
-		available = el
-		break
+		el.rstrip()
+		temp = ''
+		for nb in el:
+			if nb.isdigit():
+				temp += nb
+		available = temp
+		
 	count+=1
 
 ts = int(int(datetime.now().strftime("%s%f"))/1000)
 chars = string.ascii_letters + string.digits
-temp = '{"name:"' + name 
+temp = '{"name":"' + name 
 temp += '","used":"' + used 
 temp += '","available":"' + available
 temp += '","temperature":"' + val 

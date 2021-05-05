@@ -4,17 +4,17 @@ Copyright (C) 2002-21, Bruce Allen, Christian Franke, www.smartmontools.org
 === START OF SMART DATA SECTION ===
 SMART/Health Information (NVMe Log 0x02)
 Critical Warning:                   0x00
-Temperature:                        26 Celsius
+Temperature:                        27 Celsius
 Available Spare:                    100%
 Available Spare Threshold:          10%
 Percentage Used:                    0%
-Data Units Read:                    6.461.354 [3,30 TB]
-Data Units Written:                 5.353.804 [2,74 TB]
-Host Read Commands:                 94.837.192
-Host Write Commands:                71.318.981
-Controller Busy Time:               2.158
-Power Cycles:                       222
-Power On Hours:                     1.610
+Data Units Read:                    6.464.452 [3,30 TB]
+Data Units Written:                 5.363.739 [2,74 TB]
+Host Read Commands:                 94.871.309
+Host Write Commands:                71.533.688
+Controller Busy Time:               2.161
+Power Cycles:                       223
+Power On Hours:                     1.618
 Unsafe Shutdowns:                   134
 Media and Data Integrity Errors:    0
 Error Information Log Entries:      0

@@ -1,1 +1,1 @@
-Temperature:                        26 Celsius
+Temperature:                        27 Celsius
