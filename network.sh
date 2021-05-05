@@ -3,6 +3,6 @@
 
 while :
 do
-	ifstat > net.log
-	python3 networkStats.py
+	 python3 networkStats.py | ifstat > net.log 
+
 done
