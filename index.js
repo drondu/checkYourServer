@@ -23,7 +23,7 @@ app.post('/api', (request, response) => {
 
 app.get('/api', (request, response) => {
 	database.find({})
-			.sort({'timestamp': 1}).skip(0).limit(15).exec((err,data)=>{ 
+			.sort({'timestamp': 1}).skip(0).limit(10000).exec((err,data)=>{ 
 					response.json(data)});
 });
 

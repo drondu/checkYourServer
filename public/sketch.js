@@ -23,6 +23,34 @@ function labelsY(yAxes){
     if(yAxes == "available") 
         return 'Memory available[GB]';
 }
+
+function processTooltipModel(model) {
+    if (!model.body) {
+      return;
+    }
+    const tooltip = document.getElementById("tooltip");
+    tooltip.style.left = model.caretX + "px";
+    tooltip.style.top = model.caretY - 66 - 5 + "px";
+    tooltip.style.display = "block";
+    tooltip.querySelector(".tooltip-label").textContent = model.dataPoints[0].label;
+    tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value;
+}
+
+var middlewareToMakeTicksUnique = function(next) {
+    return function(value, index, values) {
+        var nextValue = next(value);
+
+        if (index && values.length > index+1 && // always show first and last tick
+            // don't show if next or previous tick is same
+            (next(values[index + 1]) === nextValue || next(values[index - 1]) === nextValue)
+        ) {
+            return null;
+        }
+
+        return nextValue;
+    }
+};
+
 async function axes(obj, xAxes,yAxes){
     var res = await fetch(baseURL + '/api');
     var data = await res.json();
@@ -57,10 +85,6 @@ async function chartIt1(xAxes,yAxes){
 
     await axes(obj, xAxes,yAxes);
 
-    
-    console.log("in chartIT: " + obj.xs);
-
-    console.log("in chartIT: " + obj.ys);
 
     const ctx = document.getElementById('chart1').getContext('2d');
             
@@ -72,12 +96,101 @@ async function chartIt1(xAxes,yAxes){
                     data: obj.ys,
                     label: false,
                     fill: false,
-                    backgroundColor: colors1,
-                    borderColor: '#000000',
-                    pointBackgroundColor: 'colors1',
-                    borderWidth: 1,
-                    pointRadius: 5,
+                    pointBackgroundColor: colors1,
+                    pointBorderColor: colors1,
+                    backgroundColor:'#cccc00',
+                    pointRadius: 3,
                     lineTension: 0,           
+                }]
+            },
+            options:{
+                maintainAspectRatio: true,
+                responsive: true,
+                scales:{
+                    yAxes:[{
+                        ticks:{
+                           
+                            callback: function(value){
+                                if(yAxes == "temperature") 
+                                    return  value;
+                                else if(yAxes == "time") 
+                                    return new Date(value).toLocaleDateString([], dateType);
+                                else if(yAxes == "used") 
+                                    return value;
+                                else if(yAxes == "available") 
+                                    return value;
+                            },
+                            
+                            maxTicksLimit:100
+                        },
+                        stacked:true,
+                        scaleLabel: {
+                            display: true,
+                            fontSize: 18,
+                            labelString: labelsY(yAxes)
+                        }
+                    }],
+                    xAxes:[{
+                       // min:
+                            display: true,
+                            ticks:{
+                                callback: function(value) { 
+                                    if(xAxes == "temperature") 
+                                        return  value;
+                                    else if(xAxes == "time") 
+                                        return new Date(value).toLocaleDateString([], dateType);
+                                    else if(xAxes == "used") 
+                                        return value;
+                                    else if(xAxes == "available") 
+                                        return value;
+                                },
+                                maxRotation: 90,
+                                minRotation: 20,
+                                maxTicksLimit:100,
+                                stepSize:0.1
+                            },
+                            stacked:true,
+                            scaleLabel: {
+                                display: true,
+                                fontSize: 18,
+                                labelString: labelsX(xAxes)
+                            },
+                            showXLabels:true,    
+                    }]
+                },
+                legend:{
+                    display:false
+                },
+                tooltips:{
+                    enabled: false,
+                    custom: processTooltipModel,
+                    intersect: false,
+                    mode: "index",
+                }
+                
+            }
+    });
+}
+
+async function chartIt2(xAxes,yAxes){
+    const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
+   
+    let obj = {xs: [], ys:[]};
+
+    await axes(obj, xAxes,yAxes);
+
+
+    const ctx = document.getElementById('chart2').getContext('2d');
+            
+    myChart1 = new Chart(ctx, {
+        type: 'bar',
+            data: {
+                labels: obj.xs,
+                datasets: [{
+                    data: obj.ys,
+                    label: false,
+                    fill: true,
+                    backgroundColor: colors1, 
                 }]
             },
             options:{
@@ -93,7 +206,8 @@ async function chartIt1(xAxes,yAxes){
                                     return value;
                                 else if(yAxes == "available") 
                                     return value;
-                            }
+                            },
+
                         },
                         scaleLabel: {
                             display: true,
@@ -114,7 +228,8 @@ async function chartIt1(xAxes,yAxes){
                                         return value;
                                 },
                                 maxRotation: 90,
-                                minRotation: 20
+                                minRotation: 20,
+                                maxTicksLimit: 100
                             },
                             scaleLabel: {
                                 display: true,

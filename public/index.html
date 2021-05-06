@@ -37,6 +37,7 @@
                         <option value="used">Used memory</option>
                         <option value="available">Available memory</option>
                     </select>
+                    <label>Choose axe X min:</label>
             </div>
         </div>
         <div class="row">
@@ -45,26 +46,36 @@
                 <button id="submit">Submit</button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6_chart">
+                <p></p>
+                <label>Choose axe X min:</label>
+                <input type="text" id="min_input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6_chart">
+                <label>Choose axe Y max:</label>
+                <input type="text" id="max_input">
+            </div>
+        </div>
     </div>
    
-    <div class="container_graphs">
+    <div class="container_graphs" style="position: relative">
         <div class="row">
-            <div class="col-6 chart">
-                <canvas id="chart1" width="2000" height="1000"></canvas>
-            </div>
-            <div class="col-6 charts">
-                <canvas id="chart2" width="1000" height="500"></canvas>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6 chart">
-                <canvas id="chart3" width="1000" height="300"></canvas>
-            </div>
-            <div class="col-6 charts">
-                <canvas id="chart4" width="1000" height="300"></canvas>
+            <div class="container_graphs_1">
+                <canvas id="chart1"></canvas>
+                <div id="tooltip">
+                    <div class="tooltip-label"></div>
+                    <div class="tooltip-value">
+                        <span class="color-circle"></span>
+                        <span class="value"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+   
 
     <a href="pages/pag1.html">
         to pag1
@@ -82,6 +93,7 @@
             }
             else{
                 chartIt1(axeX, axeY);
+                //chartIt2(axeX, axeY);
             } 
         });
 

@@ -12,4 +12,58 @@ input {
 .container_graphs{
     margin-top: 5%;
     margin-left: 2%;
+    max-width: 100%;
 }
+
+.container_graphs_1{
+    height: 100px;
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+
+#tooltip {
+    position: absolute;
+    display: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    width: 100px;
+    transform: translateX(-50%);
+    text-align: center;
+    background: #00aaff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.19);
+    color: #000000;
+  }
+  #tooltip .tooltip-label {
+    padding: 6px 2px;
+    color: #000000;
+    font-size: 12px;
+  }
+  #tooltip .tooltip-value {
+    padding: 0 2px 8px 2px;
+  }
+  #tooltip .tooltip-value .color-circle {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background: #000000;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  #tooltip .tooltip-value .value {
+    font-size: 14px;
+  }
+  #tooltip::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #3abeff;
+    display: block;
+    bottom: -27px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
