@@ -16,7 +16,7 @@ def readNames(names):
 	# print('caine')
 	line = fin.readline()
 	# print('ion')
-	print(line)
+	# print(line)
 	while line and lineCount < 2:
 		time.sleep(1)
 		for el in line.split():
@@ -29,9 +29,10 @@ def readNames(names):
 		lineCount += 1
 		line = fin.readline()
 
-
-# for n in names: 
-# 	print(n)
+def getHostName():
+	hin = open('hostname.txt', 'r')
+	name = hin.readline()
+	return name.rstrip('\n')
 
 
 def readValues():
@@ -41,23 +42,24 @@ def readValues():
 	readNames(names)
 	line = fin.readline()
 	while line:
-		print(line)
+		# print(line)
 		time.sleep(1)
 		columnCnt = 0
 		namesCnt = 0
-		temp = ''
 		for el in line.split():
 			if namesCnt >= len(names):
 				namesCnt = 0
 			elif columnCnt >= 2:
 				columnCnt = 0
 			if columnCnt == 0:
-				temp += '{"name":"' + names[namesCnt] 
+				temp = '{"host":"' + getHostName()
+				temp += '","name":"' + names[namesCnt] 
 				temp += '","dwnSpeed":"' + el
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
 				temp += getIdAndTimeStamp()	
 				print(temp)
+				fout.write(temp)
 				temp = ''
 			columnCnt += 1
 			if columnCnt == 2:
@@ -65,10 +67,10 @@ def readValues():
 		lineCount += 1
 
 		if lineCount == 21:
-			print('\n\n22 linii')
+			# print('\n\n22 linii')
 			lineCount = 0	
 		if lineCount == 0:
-			print('\n\n0 linii')
+			# print('\n\n0 linii')
 			# print('ionica')
 			readNames(names)
 			# print('besica')
@@ -81,10 +83,12 @@ def getIdAndTimeStamp():
 	ts = int(int(datetime.now().strftime("%s%f"))/1000)
 	chars = string.ascii_letters + string.digits
 	temp = '","timestamp":' + str(ts)
-	temp += ',"_id":"'+ ''.join(random.choices(chars, k=16)) 
+	temp += ',"_id":"'+ ''.join(random.choices(chars, k=30)) 
 	temp +=  '"}'
 	return temp
 
+
+getHostName()
 
 # print('john')
 

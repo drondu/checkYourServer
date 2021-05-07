@@ -5,12 +5,20 @@ import string
 import random 
 from random import randint
 
+def getHostName():
+	hin = open('hostname.txt', 'r')
+	name = hin.readline()
+	return name.rstrip('\n')
+
+
+
 fin = open('diskUsageStripped.txt','r')
 fin2 = open('diskTempStripped.txt', 'r')
 fout = open('diskUsage.db', 'a')
 
 line = fin2.readline()
 line = line.rstrip()
+
 
 val = ''
 for el in line:
@@ -45,12 +53,13 @@ for el in line.split():
 
 ts = int(int(datetime.now().strftime("%s%f"))/1000)
 chars = string.ascii_letters + string.digits
-temp = '{"name":"' + name 
+temp = '{"host":"' + getHostName()
+temp += '","name":"' + name 
 temp += '","used":"' + used 
 temp += '","available":"' + available
 temp += '","temperature":"' + val 
 temp += '","timestamp":' + str(ts)
-temp += ',"_id":"'+ ''.join(random.choices(chars, k=16)) 
+temp += ',"_id":"'+ ''.join(random.choices(chars, k=30)) 
 temp +=  '"}\n'
 print('temp: ' + temp)			
 fout.write(temp)
