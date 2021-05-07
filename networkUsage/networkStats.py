@@ -30,7 +30,7 @@ def readNames(names):
 		line = fin.readline()
 
 def getHostName():
-	hin = open('hostname.txt', 'r')
+	hin = open('../hostname.txt', 'r')
 	name = hin.readline()
 	return name.rstrip('\n')
 
@@ -58,7 +58,7 @@ def readValues():
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
 				temp += getIdAndTimeStamp()	
-				print(temp)
+				# print(temp)
 				fout.write(temp)
 				temp = ''
 			columnCnt += 1
@@ -84,7 +84,7 @@ def getIdAndTimeStamp():
 	chars = string.ascii_letters + string.digits
 	temp = '","timestamp":' + str(ts)
 	temp += ',"_id":"'+ ''.join(random.choices(chars, k=30)) 
-	temp +=  '"}'
+	temp +=  '"}\n'
 	return temp
 
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+echo "starting networkStats"
+
 while :
 do
 	hostname > hostname.txt

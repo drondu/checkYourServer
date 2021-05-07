@@ -1,8 +1,10 @@
 #!/bin/bash
 
+echo "started disk monitoring"
 
 while :
 do
+	echo "hopa"
 	df -h -v /tmp/ > diskUsage.txt
 	grep -i "dev" diskUsage.txt > diskUsageStripped.txt
 	sudo smartctl -A /dev/nvme0 > diskTemp.txt

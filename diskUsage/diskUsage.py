@@ -6,7 +6,7 @@ import random
 from random import randint
 
 def getHostName():
-	hin = open('hostname.txt', 'r')
+	hin = open('../hostname.txt', 'r')
 	name = hin.readline()
 	return name.rstrip('\n')
 
@@ -61,7 +61,7 @@ temp += '","temperature":"' + val
 temp += '","timestamp":' + str(ts)
 temp += ',"_id":"'+ ''.join(random.choices(chars, k=30)) 
 temp +=  '"}\n'
-print('temp: ' + temp)			
+# print('temp: ' + temp)			
 fout.write(temp)
 
 fin.close()
