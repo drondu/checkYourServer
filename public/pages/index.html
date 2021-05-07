@@ -16,26 +16,19 @@
 <body>   
     <div class="container_input">
         <div class="row">
-            <div class="col-6_chart">
-                <label>Choose axe X parameter:</label>
-                <select name="axeX" id="axeX">
-                    <option value="temperature">Temperature</option>
-                    <option value="time">Time</option>
-                    <option value="used">Used memory</option>
-                    <option value="available">Available</option>
-                </select>
-            </div>
-        </div>
-  
-        <div class="row">
-            <div class="col-6_chart">
-                <label>Choose axe Y parameter:</label>
-                    <select name="axeY" id="axeY">
-                        <option value="temperature">Temperature</option>
-                        <option value="time">Time</option>
-                        <option value="used">Used memory</option>
-                        <option value="available">Available memory</option>
-                    </select>
+            <label>Choose axe X parameter:</label>
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <div class="custom-select__trigger"><span></span>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="custom-options" id="axeX">
+                        <span class="custom-option selected" data-value="temperature">Temperature</span>
+                        <span class="custom-option" data-value="time">Time</span>
+                        <span class="custom-option" data-value="used">Used memory</span>
+                        <span class="custom-option" data-value="available">Available memory</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -99,7 +92,12 @@
                 //chartIt2(axeX, axeY);
             } 
             console.clear();
+            
         });
+        
+  
     </script>
+    
 </body>
+
 </html>
