@@ -1,6 +1,6 @@
 #! /usr/bin/p9ython
 from datetime import datetime
-
+import time
 import string
 import random 
 from random import randint
@@ -18,10 +18,12 @@ for el in line:
 		val += el
 
 chars = string.ascii_letters + string.digits
+# time.sleep(0.5)
 
 count = 0
 line = fin.readline()
 for el in line.split():
+	time.sleep(0.1)
 	if count == 0:
 		name = el
 	if count == 2:

@@ -3,6 +3,7 @@
 
 while :
 do
-	 python3 networkStats.py | ifstat > net.log 
+	echo "Network monitoring started" 
+	ifstat > net.log | python3 networkStats.py  
 
 done
