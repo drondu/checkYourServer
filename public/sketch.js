@@ -1,6 +1,69 @@
 
 var dateType = {month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-var randomColor = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+var myChart1;
+var  backgroundColors = [
+    'rgba(255, 99, 132, 0.2)', 'rgba(255, 205, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(54, 162, 235, 0.2)','rgba(153, 102, 255, 0.2)','rgba(201, 203, 207, 0.2)',
+    'rgba(255, 159, 64, 0.2)',
+    'rgba(238, 130, 238,0.2)',
+    'rgba(208, 99, 71,0.2)',
+    'rgba(208, 253, 71, 0.2)',
+    'rgba(208, 212, 255,0.2)',
+    'rgba(136, 0, 0,0.2)',
+    'rgba(106, 90, 205,0.2)',
+    'rgba(255, 0, 0, 0.2)',
+    'rgba(255, 111, 0, 0.2)',
+    'rgba(255, 255, 0, 0.2)',
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(255, 205, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(201, 203, 207, 0.2)',
+    'rgba(255, 159, 64, 0.2)',
+    'rgba(238, 130, 238,0.2)',
+    'rgba(208, 99, 71,0.2)',
+    'rgba(208, 253, 71, 0.2)',
+    'rgba(208, 212, 255,0.2)',
+    'rgba(136, 0, 0,0.2)',
+    'rgba(106, 90, 205,0.2)',
+    'rgba(255, 0, 0, 0.2)',
+    'rgba(255, 111, 0, 0.2)',
+    'rgba(255, 255, 0, 0.2)'
+  ];
+var borderColors = [
+    'rgb(255, 99, 132)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    'rgb(255, 159, 64)',
+    'rgb(238, 130, 238)',
+    'rgb(208, 99, 71)',
+    'rgb(208, 253, 71)',
+    'rgb(208, 212, 255)',
+    'rgb(136, 0, 0)',
+    'rgb(106, 90, 205)',
+    'rgb(255, 0, 0)',
+    'rgb(255, 111, 0)',
+    'rgb(255, 255, 0)',
+    'rgb(255, 99, 132)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    'rgb(255, 159, 64)',
+    'rgb(238, 130, 238)',
+    'rgb(208, 99, 71)',
+    'rgb(208, 253, 71)',
+    'rgb(208, 212, 255)',
+    'rgb(136, 0, 0)',
+    'rgb(106, 90, 205)',
+    'rgb(255, 0, 0)',
+    'rgb(255, 111, 0)',
+    'rgb(255, 255, 0)'
+  ]
 
 function labelsX(xAxes){
     if(xAxes == "temperature") 
@@ -34,7 +97,33 @@ function processTooltipModel(model) {
     tooltip.style.display = "block";
     tooltip.querySelector(".tooltip-label").textContent = model.dataPoints[0].label;
     tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value;
+} 
+function findTwentyEight(a) {
+    for(i =0 ; i<=a.length;i++){
+        return element = 32;
+    }
 }
+function findTwentyNine(a) {
+    for(i =0 ; i<=a.length;i++){
+        return element = 32;
+    }
+}
+function findThirty(a) {
+    for(i =0 ; i<=a.length;i++){
+        return element = 32;
+    }
+}
+function findThirtyOne(a) {
+    for(i =0 ; i<=a.length;i++){
+        return element = 32;
+    }
+}
+function findThirtyTwo(a) {
+    for(i =0 ; i<=a.length;i++){
+        return element = 32;
+    }
+}
+
 
 var middlewareToMakeTicksUnique = function(next) {
     return function(value, index, values) {
@@ -43,10 +132,9 @@ var middlewareToMakeTicksUnique = function(next) {
         if (index && values.length > index+1 && // always show first and last tick
             // don't show if next or previous tick is same
             (next(values[index + 1]) === nextValue || next(values[index - 1]) === nextValue)
-        ) {
+        ){
             return null;
         }
-
         return nextValue;
     }
 };
@@ -84,80 +172,82 @@ async function chartIt1(xAxes,yAxes){
     let obj = {xs: [], ys:[]};
 
     await axes(obj, xAxes,yAxes);
-
-
+    console.log("28: "+obj.ys.find(findTwentyEight));
+    console.log("29: "+obj.ys.find(findTwentyNine));
+    console.log("30: "+obj.ys.find(findThirty));
+    console.log("31: "+obj.ys.find(findThirtyOne));
+    console.log("32: "+obj.ys.find(findThirtyTwo));
     const ctx = document.getElementById('chart1').getContext('2d');
-            
-    myChart1 = new Chart(ctx, {
-        type: 'line',
-            data: {
-                labels: obj.xs,
-                datasets: [{
-                    data: obj.ys,
-                    label: false,
-                    fill: false,
-                    pointBackgroundColor: colors1,
-                    pointBorderColor: colors1,
-                    backgroundColor:'#cccc00',
-                    pointRadius: 3,
-                    lineTension: 0,           
-                }]
+    
+    let data1 = {
+        labels: obj.xs,
+        datasets: [{
+            data: obj.ys,
+            label: false,
+            fill: false,
+            backgroundColor: backgroundColors,
+              borderColor: borderColors,
+              borderWidth: 1                  
+        }
+    ]
+    };
+
+    let scales1 = {
+        yAxes:[{
+            ticks:{
+                callback: function(value){
+                    if(yAxes == "temperature") 
+                        return  value;
+                    else if(yAxes == "time") 
+                        return new Date(value).toLocaleDateString([], dateType);
+                    else if(yAxes == "used") 
+                        return value;
+                    else if(yAxes == "available") 
+                        return value;
+                },
+                maxTicksLimit:100
             },
+            stacked: true,
+            scaleLabel: {
+                display: true,
+                fontSize: 18,
+                labelString: labelsY(yAxes)
+            }
+        }],
+        xAxes:[{
+                display: true,
+                ticks:{
+                    callback: function(value) { 
+                        if(xAxes == "temperature") 
+                            return  value;
+                        else if(xAxes == "time") 
+                            return new Date(value).toLocaleDateString([], dateType);
+                        else if(xAxes == "used") 
+                            return value;
+                        else if(xAxes == "available") 
+                            return value;
+                    },
+                    maxRotation: 90,
+                    minRotation: 20,
+                    maxTicksLimit:100,
+                },
+                stacked: true,
+                scaleLabel: {
+                    display: true,
+                    fontSize: 18,
+                    labelString: labelsX(xAxes)
+                },
+                showXLabels:true,
+        }]
+    };
+
+    myChart1 = new Chart(ctx, {
+        type: 'bar',
+        data: data1,
             options:{
                 maintainAspectRatio: true,
                 responsive: true,
-                scales:{
-                    yAxes:[{
-                        ticks:{
-                           
-                            callback: function(value){
-                                if(yAxes == "temperature") 
-                                    return  value;
-                                else if(yAxes == "time") 
-                                    return new Date(value).toLocaleDateString([], dateType);
-                                else if(yAxes == "used") 
-                                    return value;
-                                else if(yAxes == "available") 
-                                    return value;
-                            },
-                            
-                            maxTicksLimit:100
-                        },
-                        stacked:true,
-                        scaleLabel: {
-                            display: true,
-                            fontSize: 18,
-                            labelString: labelsY(yAxes)
-                        }
-                    }],
-                    xAxes:[{
-                       // min:
-                            display: true,
-                            ticks:{
-                                callback: function(value) { 
-                                    if(xAxes == "temperature") 
-                                        return  value;
-                                    else if(xAxes == "time") 
-                                        return new Date(value).toLocaleDateString([], dateType);
-                                    else if(xAxes == "used") 
-                                        return value;
-                                    else if(xAxes == "available") 
-                                        return value;
-                                },
-                                maxRotation: 90,
-                                minRotation: 20,
-                                maxTicksLimit:100,
-                                stepSize:0.1
-                            },
-                            stacked:true,
-                            scaleLabel: {
-                                display: true,
-                                fontSize: 18,
-                                labelString: labelsX(xAxes)
-                            },
-                            showXLabels:true,    
-                    }]
-                },
+                scales: scales1,
                 legend:{
                     display:false
                 },
@@ -165,174 +255,15 @@ async function chartIt1(xAxes,yAxes){
                     enabled: false,
                     custom: processTooltipModel,
                     intersect: false,
-                    mode: "index",
+                    mode: "index"
                 }
-                
             }
-    });
+    }); 
 }
+    if (myChart1) {
+        myChart1.destroy();
+    }
 
-async function chartIt2(xAxes,yAxes){
-    const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
-   
-    let obj = {xs: [], ys:[]};
-
-    await axes(obj, xAxes,yAxes);
-
-
-    const ctx = document.getElementById('chart2').getContext('2d');
-            
-    myChart1 = new Chart(ctx, {
-        type: 'bar',
-            data: {
-                labels: obj.xs,
-                datasets: [{
-                    data: obj.ys,
-                    label: false,
-                    fill: true,
-                    backgroundColor: colors1, 
-                }]
-            },
-            options:{
-                scales:{
-                    yAxes:[{
-                        ticks:{
-                            callback: function(value){
-                                if(yAxes == "temperature") 
-                                    return  value;
-                                else if(yAxes == "time") 
-                                    return new Date(value).toLocaleDateString([], dateType);
-                                else if(yAxes == "used") 
-                                    return value;
-                                else if(yAxes == "available") 
-                                    return value;
-                            },
-
-                        },
-                        scaleLabel: {
-                            display: true,
-                            fontSize: 18,
-                            labelString: labelsY(yAxes)
-                        }  
-                    }],
-                    xAxes:[{
-                            ticks:{
-                                callback: function(value) { 
-                                    if(xAxes == "temperature") 
-                                        return  value;
-                                    else if(xAxes == "time") 
-                                        return new Date(value).toLocaleDateString([], dateType);
-                                    else if(xAxes == "used") 
-                                        return value;
-                                    else if(xAxes == "available") 
-                                        return value;
-                                },
-                                maxRotation: 90,
-                                minRotation: 20,
-                                maxTicksLimit: 100
-                            },
-                            scaleLabel: {
-                                display: true,
-                                fontSize: 18,
-                                labelString: labelsX(xAxes)
-                            }  
-                    }]
-                },
-                legend:{
-                    display:false
-                }
-                
-            }
-    });
-}
-
-
-
-    
-// chartIt2();
-// async function chartIt2() {
-   
-//     const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff'];
-//     const dat = await getData();
-
-//     const ctx = document.getElementById('chart2').getContext('2d');
-            
-//     const myChart1 = new Chart(ctx, {
-//         type: 'pie',
-//             data: {
-//                 labels: dat.xs,
-//                 datasets: [{
-//                     label: 'Global Temperature in C°',
-//                     data: dat.ys,
-//                     fill: true,
-//                     backgroundColor: '#ccffcc',
-//                     borderColor: colors1,
-//                     borderWidth: 1
-//                 }]
-//             },
-//             options:{
-//                 scales:{
-//                     yAxes:[{
-//                         ticks:{
-//                             callback: function(value,index,values){
-//                                 return  value + '°';
-//                             }
-//                         }
-//                     }],
-//                     xAxes:[{
-//                         ticks:{
-//                             callback: function(value) { 
-//                                 return new Date(value).toLocaleDateString([], {month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit'}); 
-//                             }
-//                         }
-//                     }]
-//                 }
-//             }
-//     });
-// }
-
-// chartIt3();
-// async function chartIt3() {
-   
-    
-//     const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff'];
-//     const dat = await getData();
-
-//     const ctx = document.getElementById('chart3').getContext('2d');
-            
-//     const myChart1 = new Chart(ctx, {
-//         type: 'bar',
-//             data: {
-//                 labels: dat.xs,
-//                 datasets: [{
-//                     label: 'Global Temperature in C°',
-//                     data: dat.ys,
-//                     fill: true,
-//                     backgroundColor: '#ccffcc',
-//                     borderColor: colors1,
-//                     borderWidth: 1
-//                 }]
-//             },
-//             options:{
-//                 scales:{
-//                     yAxes:[{
-//                         ticks:{
-//                             callback: function(value,index,values){
-//                                 return  value + '°';
-//                             }
-//                         }
-//                     }],
-//                     xAxes:[{
-//                         ticks:{
-//                             callback: function(value) { 
-//                                 return new Date(value).toLocaleDateString([], dateType);//{month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }); 
-//                             }
-//                         }
-//                     }]
-//                 }
-//             }
-//     });
-// }
 
 
     
