@@ -8,7 +8,7 @@ start_network() { cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>
 
 stop_pros()
 {
-	./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh 
+	./destroy.sh
 }
 
 

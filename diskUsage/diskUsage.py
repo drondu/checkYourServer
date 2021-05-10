@@ -63,6 +63,7 @@ temp += ',"_id":"'+ ''.join(random.choices(chars, k=30))
 temp +=  '"}\n'
 # print('temp: ' + temp)			
 fout.write(temp)
+fout.flush()
 
 fin.close()
 fout.close()

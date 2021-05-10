@@ -54,6 +54,7 @@ def readValues():
 				temp += getIdAndTimeStamp()	
 				#print(temp)
 				fout.write(temp)
+				fout.flush()
 				temp = ''
 			columnCnt += 1
 			if columnCnt == 2:
