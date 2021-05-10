@@ -1,1 +1,1 @@
-/dev/nvme0n1p2  468G   47G  398G  11% /
+/dev/nvme0n1p2  468G  9,3G  435G   3% /

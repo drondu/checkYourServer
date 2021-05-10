@@ -2,7 +2,7 @@
 
 while :
 do
-	sleep 3
+	sleep 5
 
 	cat diskUsageServer0.db >> diskUsage.db 
 	cat netUsageServer0.db >> netUsage.db

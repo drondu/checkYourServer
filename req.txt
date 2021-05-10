@@ -1,0 +1,12 @@
+
+
+**** ifstat ****
+sudo apt install ifstat
+
+**** ifconfig ****
+sudo apt install net-tools
+
+
+**** multipass ****
+snap install multipass
+

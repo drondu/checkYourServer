@@ -2,8 +2,15 @@
 
 
 ###########Aliases#################################
-start_disk() { cd diskUsage && nohup ./diskUsage.sh </dev/null >/dev/null 2>&1 & }
-start_network() { cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>&1 & }
+start_disk()
+{
+	cd diskUsage && nohup ./diskUsage.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_network()
+{
+	cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>&1 &
+}
 
 
 create_db() 
@@ -11,15 +18,12 @@ create_db()
 	cd DBs 
 	nohup ./createBigMamaDB.sh </dev/null >/dev/null 2>&1 &
 }
-stop_pros() 
-{ 
-	./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh && ./destroy.sh 
-}
 
 start_server0() 
 { 
 	sshpass -proot ssh ubuntu@10.124.191.26 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
 }
+
 start_server1() 
 { 
 	sshpass -proot ssh ubuntu@10.124.191.22 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
@@ -29,7 +33,6 @@ start_server1()
 ##########Functions##############################
 prepare_env()
 {
-	stop_pros
 	cd diskUsage/
 	rm -rf diskTempStripped.txt diskTemp.txt diskUsageStripped.txt diskUsage.txt
 	cd ..
@@ -61,15 +64,8 @@ start_local_machine()
 echo "Starting scripts"
 	
 prepare_env
-#start_local_machine #| start_aggregated_machines
-cd diskUsage 
-nohup ./diskUsage.sh </dev/null >/dev/null 2>&1 &
-cd ..
-ls -la
-cd networkUsage
-nohup ./network.sh </dev/null >/dev/null 2>&1 &
-cd ..
-ls -la
+start_local_machine #| start_aggregated_machines
+
 
 
 echo "Scripts are started"
