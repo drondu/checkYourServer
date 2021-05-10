@@ -6,16 +6,10 @@
 start_disk() { cd diskUsage && nohup ./diskUsage.sh </dev/null >/dev/null 2>&1 & }
 start_network() { cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>&1 & }
 
-stop_pros()
-{
-	./destroy.sh
-}
-
 
 ##########Functions##############################
 prepare_env()
 {
-	stop_pros
 	cd diskUsage/
 	rm -rf diskUsage.db diskTempStripped.txt diskTemp.txt diskUsageStripped.txt diskUsage.txt
 	cd ..

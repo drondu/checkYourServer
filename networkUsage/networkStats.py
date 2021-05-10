@@ -6,7 +6,6 @@ import random
 from random import randint
 
 fin = open('net.log','r')
-fout = open('netUsage.db', 'a')
 
 def readNames(names):
 	time.sleep(1)
@@ -40,6 +39,7 @@ def readValues():
 		time.sleep(1)
 		columnCnt = 0
 		namesCnt = 0
+		fout = open('netUsage.db', 'a')
 		for el in line.split():
 			if namesCnt >= len(names):
 				namesCnt = 0
