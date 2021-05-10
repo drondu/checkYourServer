@@ -1,1 +1,1 @@
-Temperature:                        32 Celsius
+Temperature:                        29 Celsius

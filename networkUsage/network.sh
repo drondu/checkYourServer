@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-while :
-do 
+# while :
+# do 
 	ifstat > net.log | python3 networkStats.py  
-done
+# done
