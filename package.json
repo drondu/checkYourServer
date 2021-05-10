@@ -19,5 +19,13 @@
   "devDependencies": {
     "nodemon": "^2.0.7"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drondu/checkYourServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/drondu/checkYourServer/issues"
+  },
+  "homepage": "https://github.com/drondu/checkYourServer#readme"
 }

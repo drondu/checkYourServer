@@ -1,26 +1,23 @@
-input {
-    margin-left: 10px;
-}
 .container_input{
-    margin-top: 2%;
+    margin-top: 10%;
     margin-left: 2%;
 }
-
 .row{
-    margin-top: 1%;
+    margin-top: 2%;
+    max-width: 30%;
+    margin-left: 3%;
 }
 .container_graphs{
     margin-top: 5%;
     margin-left: 2%;
-    max-width: 100%;
+    max-width: 95%;
 }
-
 .container_graphs_1{
-    height: 100px;
-    flex: 0 0 auto;
+    height: 30%;
+    /* flex: 0 0 auto; */
     width: 100%;
 }
-
+/* -----------------------------------------tooltip--------------------------------------- */
 #tooltip {
     position: absolute;
     display: none;
@@ -30,35 +27,33 @@ input {
     transform: translateX(-50%);
     text-align: center;
     background: #00aaff;
-    border-radius: 3px;
     box-shadow: 0px 0px 2px #ffffff;
     color: #ffffff;
-  }
-  #tooltip .tooltip-label {
+}
+#tooltip .tooltip-label {
     padding: 6px 2px;
     color: #ffffff;
     font-size: 12px;
-  }
-  #tooltip .tooltip-value {
-    padding: 0 2px 8px 2px;
-  }
-  
-  #tooltip .tooltip-value .value {
-    font-size: 14px;
-  }
-  #tooltip::after {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background: #3abeff;
-    display: block;
-    bottom: -27px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+}
+#tooltip .tooltip-value {
+   padding: 0 2px 8px 2px;
+}
 
+#tooltip .tooltip-value .value {
+    font-size: 14px;
+}
+#tooltip::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #3abeff;
+  display: block;
+  bottom: -27px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* -----------------------------------------submit button--------------------------------------- */
 .button{
     position: relative;
     background-color: #3abeff;
@@ -72,8 +67,8 @@ input {
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
-    border-radius: 7%;
-  }
+    font-family:"Courier New", Courier, monospace;
+}
     
 .button:after {
     content: "";
@@ -86,7 +81,7 @@ input {
     margin-top: -120%;
     opacity: 0;
     transition: all 0.8s
-  }
+ }
     
 .button:active:after {
     padding: 0;
@@ -96,110 +91,267 @@ input {
   }
 
 
-/* ................. */
-
-*, *:after, *:before {
-  box-sizing: border-box;
-}
+/* -----------------------------------------custom-select--------------------------------------- */
 
 .custom-select-wrapper {
-  position: relative;
-  user-select: none;
-  width: 100%;
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+.custom-select select{
+   display: none;
 }
 .custom-select {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border-width: 0 2px 0 2px;
-  border-style: solid;
-  border-color: #3abeff;
-  width: 300px;
-  height: 50px;
-  border-radius: 7%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 0 2px 0 2px;
+    border-style: solid;
+    border-color: #3abeff;
+    width: 300px;
+    height: 50px;
 }
 .custom-select__trigger {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  font-size: 18px;
-  font-weight: 300;
-  color: #ffffff;
-  line-height: 50px;
-  background: #3abeff;
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 50px;
+    background: #3abeff;
+    cursor: pointer;
+    height: 70px;
 }
 .custom-options {
-  position: absolute;
-  display: block;
-  top: 100%;
-  left: 0;
-  right: 0;
-  border: 2px solid #31a0d8;
-  border-top: 0;
-  background: #31a0d8;
-  transition: all 0.5s;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 2;
-}
-.custom-select.open .custom-options {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
-.custom-option {
-  position: relative;
-  display: block;
-  padding: 0 22px 0 22px;
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-  line-height: 60px;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-.custom-option:hover {
-  cursor: pointer;
-  background-color: #31a0d8;
-}
-.custom-option.selected {
-  color: #ffffff;
-  background-color: #3abeff;
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #31a0d8;
+    border-top: 0;
+    background: #31a0d8;
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
 }
 
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px 0 22px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-family:"Courier New", Courier, monospace;
+}
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #31a0d8;
+}
+.custom-option.selected {
+    color: #ffffff;
+    background-color: #3abeff;
+}
 .arrow {
-  position: relative;
-  height: 15px;
-  width: 15px;
+    position: relative;
+    height: 15px;
+    width: 15px;
 }
 .arrow::before, .arrow::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  width: 0.15rem;
-  height: 100%;
-  transition: all 0.5s;
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
 }
 .arrow::before {
-  left: 5px;
-  transform: rotate(45deg);
-  background-color: #ffffff;
+    left: 5px;
+    transform: rotate(45deg);
+    background-color: #ffffff;
 }
 .arrow::after {
-  left: 15px;
-  transform: rotate(-45deg);
-  background-color: #ffffff;
+    left: 15px;
+    transform: rotate(-45deg);
+    background-color: #ffffff;
 }
 .open .arrow::before {
-  left: 5px;
-  transform: rotate(-45deg);
+    left: 5px;
+    transform: rotate(-45deg);
 }
 .open .arrow::after {
-  left: 15px;
-  transform: rotate(45deg);
+    left: 15px;
+    transform: rotate(45deg);
 }
+
+/* -----------------------------------------console writting--------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+body {
+  background: #0673aa;
+}
+.hidden {
+  opacity:0;
+}
+.console-container {
+  font-family:"Courier New", Courier, monospace;
+  font-size:4em;
+  text-align:center;
+  height:200px;
+  width:1000px;
+  display:block;
+  position:absolute;
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  margin-top: 1%;;
+}
+.console-underscore {
+  display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
+label{
+  font-family:"Courier New", Courier, monospace;
+  color: #ffffff;
+  font-size:20px;
+}
+/* -----------------------------------------textboxes--------------------------------------- */
+.field_v1{
+  width: 400px;
+}
+.field_v2{
+  width: 400px;
+}
+.field__input{ 
+  --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #ffffff98);
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+.field__input:focus::-webkit-input-placeholder{
+  color: var(--uiFieldPlaceholderColor);
+}
+.field__input:focus::-moz-placeholder{
+  color: var(--uiFieldPlaceholderColor);
+}
+.field{
+  --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
+  --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
+  --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);   
+  --uiFieldBorderColorActive: var(--fieldBorderColorActive, rgb(230, 230, 230));
+  display: var(--fieldDisplay, inline-flex);
+  position: relative;
+  font-size: var(--fieldFontSize, 1rem);
+}
+.field__input{
+  box-sizing: border-box;
+  width: var(--fieldWidth, 100%);
+  height: var(--fieldHeight, 3rem);
+  padding: var(--fieldPaddingTop, 1.25rem) var(--uiFieldPaddingRight) var(--fieldPaddingBottom, .5rem) var(--uiFieldPaddingLeft);
+  border-bottom: var(--uiFieldBorderWidth) solid var(--fieldBorderColor, rgba(223, 223, 223, 0.25));  
+  color: #ffffff;
+}
+.field__input:focus{
+  outline: none;
+}
+.field__input::-webkit-input-placeholder{
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+.field__input::-moz-placeholder{
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+.field__input:focus::-webkit-input-placeholder{
+  opacity: 1;
+  transition-delay: .2s;
+}
+.field__input:focus::-moz-placeholder{
+  opacity: 1;
+  transition-delay: .2s;
+}
+.field__label-wrap{
+  box-sizing: border-box;
+  pointer-events: none;
+  cursor: text;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.field__label-wrap::after{
+  content: "";
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.field__input:focus ~ .field__label-wrap::after{
+  opacity: 1;
+}
+.field__label{
+  position: absolute;
+  left: var(--uiFieldPaddingLeft);
+  top: calc(50% - .5em);
+  line-height: 1;
+  font-size: var(--fieldHintFontSize, inherit);
+  transition: top .2s cubic-bezier(0.9, -0.15, 0.1, 1.15), opacity .2s ease-out, font-size .2s ease-out;
+  will-change: bottom, opacity, font-size;
+}
+.field__input:focus ~ .field__label-wrap .field__label,
+.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label{
+  --fieldHintFontSize: var(--fieldHintFontSizeFocused, .75rem);
+  top: var(--fieldHintTopHover, .25rem);
+}
+.field_v1 .field__label-wrap::after{
+  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transition: opacity .2s ease-out;
+  will-change: opacity;
+}
+.field_v2 .field__label-wrap{
+  overflow: hidden;
+}
+.field_v2 .field__label-wrap::after{
+  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transform: translate3d(-105%, 0, 0);
+  will-change: transform, opacity;
+  transition: transform .285s ease-out .2s, opacity .2s ease-out .2s;
+}
+.field_v2 .field__input:focus ~ .field__label-wrap::after{
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0;
+}
+.field{
+  --fieldBorderColor: #ffffff;
+  --fieldBorderColorActive: #00aaff;
+}
+canvas{
+  background-color:#ffffff;
+}
+
 

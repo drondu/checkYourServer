@@ -4,11 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hosts</title>
     <link rel="shortcut icon" href="#">
+    <script src="../sketch_main.js" defer></script>
+    <script src="../scripts/constants.js" defer></script>
     <link rel="stylesheet" href="../style_main.css">
 </head>
 <body>
-    <a href="index.html"><button class="button" id="charts_btn">Go to charts</button></a> 
+  <!-- <a href="index.html"><button class="button" id="charts_btn">Login</button></a>  -->
+ <button class="button" id="charts_btn">Login</button> 
+    <div class='console-container'><span id='text'></span>
+        <div class='console-underscore' id='console'>&#95;</div>
+    </div>
+
+    <div class="user_input">
+        <div id="user_div">
+            <label class="field field_v1" >
+                <input class="field__input" id="user" placeholder="e.g. user">
+                <span class="field__label-wrap">
+                <span class="field__label">Enter user</span>
+                </span>
+            </label>
+        </div>
+            <label class="field field_v2" >
+                <input class="field__input" id="pass" placeholder="e.g. 1234">
+                <span class="field__label-wrap">
+                <span class="field__label">Enter password</span>
+                </span>
+            </label>
+    </div>
+    <div>
+        <img src="binary2.png" width="100%" height="5%" style="margin-top:15%; opacity: 20%;">
+    </div> 
+    <script>
+        const charset_btn = document.getElementById('charts_btn');
+        
+        charset_btn.addEventListener('click', async event => {
+            const user = document.getElementById('user').value;
+            const pass = document.getElementById('pass').value;
+            console.log(user);
+            console.log(pass);
+
+            
+        });  
+    </script>
 </body>
 </html>

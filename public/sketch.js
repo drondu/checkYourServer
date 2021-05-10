@@ -1,80 +1,6 @@
 
 var dateType = {month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
 var myChart1;
-var  backgroundColors = [
-    'rgba(255, 99, 132, 0.2)', 'rgba(255, 205, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(54, 162, 235, 0.2)','rgba(153, 102, 255, 0.2)','rgba(201, 203, 207, 0.2)',
-    'rgba(255, 159, 64, 0.2)',
-    'rgba(238, 130, 238,0.2)',
-    'rgba(208, 99, 71,0.2)',
-    'rgba(208, 253, 71, 0.2)',
-    'rgba(208, 212, 255,0.2)',
-    'rgba(136, 0, 0,0.2)',
-    'rgba(106, 90, 205,0.2)',
-    'rgba(255, 0, 0, 0.2)',
-    'rgba(255, 111, 0, 0.2)',
-    'rgba(255, 255, 0, 0.2)',
-    'rgba(255, 99, 132, 0.2)',
-    'rgba(255, 205, 86, 0.2)',
-    'rgba(75, 192, 192, 0.2)',
-    'rgba(54, 162, 235, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(201, 203, 207, 0.2)',
-    'rgba(255, 159, 64, 0.2)',
-    'rgba(238, 130, 238,0.2)',
-    'rgba(208, 99, 71,0.2)',
-    'rgba(208, 253, 71, 0.2)',
-    'rgba(208, 212, 255,0.2)',
-    'rgba(136, 0, 0,0.2)',
-    'rgba(106, 90, 205,0.2)',
-    'rgba(255, 0, 0, 0.2)',
-    'rgba(255, 111, 0, 0.2)',
-    'rgba(255, 255, 0, 0.2)'
-  ];
-var borderColors = [
-    'rgb(255, 99, 132)',
-    'rgb(255, 205, 86)',
-    'rgb(75, 192, 192)',
-    'rgb(54, 162, 235)',
-    'rgb(153, 102, 255)',
-    'rgb(201, 203, 207)',
-    'rgb(255, 159, 64)',
-    'rgb(238, 130, 238)',
-    'rgb(208, 99, 71)',
-    'rgb(208, 253, 71)',
-    'rgb(208, 212, 255)',
-    'rgb(136, 0, 0)',
-    'rgb(106, 90, 205)',
-    'rgb(255, 0, 0)',
-    'rgb(255, 111, 0)',
-    'rgb(255, 255, 0)',
-    'rgb(255, 99, 132)',
-    'rgb(255, 205, 86)',
-    'rgb(75, 192, 192)',
-    'rgb(54, 162, 235)',
-    'rgb(153, 102, 255)',
-    'rgb(201, 203, 207)',
-    'rgb(255, 159, 64)',
-    'rgb(238, 130, 238)',
-    'rgb(208, 99, 71)',
-    'rgb(208, 253, 71)',
-    'rgb(208, 212, 255)',
-    'rgb(136, 0, 0)',
-    'rgb(106, 90, 205)',
-    'rgb(255, 0, 0)',
-    'rgb(255, 111, 0)',
-    'rgb(255, 255, 0)'
-  ]
-
-function labelsX(xAxes){
-    if(xAxes == "temperature") 
-        return 'Temperature[°C]';
-    if(xAxes == "time") 
-        return 'Date[dd/mm/yy hh/mm/ss]';
-    if(xAxes == "used") 
-        return 'Memory used[GB]';
-    if(xAxes == "available") 
-        return 'Memory available[GB]';
-}
 
 function labelsY(yAxes){
     if(yAxes == "temperature") 
@@ -98,32 +24,31 @@ function processTooltipModel(model) {
     tooltip.querySelector(".tooltip-label").textContent = model.dataPoints[0].label;
     tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value;
 } 
-function findTwentyEight(a) {
-    for(i =0 ; i<=a.length;i++){
-        return element = 32;
-    }
-}
-function findTwentyNine(a) {
-    for(i =0 ; i<=a.length;i++){
-        return element = 32;
-    }
-}
-function findThirty(a) {
-    for(i =0 ; i<=a.length;i++){
-        return element = 32;
-    }
-}
-function findThirtyOne(a) {
-    for(i =0 ; i<=a.length;i++){
-        return element = 32;
-    }
-}
-function findThirtyTwo(a) {
-    for(i =0 ; i<=a.length;i++){
-        return element = 32;
-    }
-}
-
+// function findTwentyEight(a) {
+//     for(i =0 ; i<=a.length;i++){
+//         return element = 32;
+//     }
+// }
+// function findTwentyNine(a) {
+//     for(i =0 ; i<=a.length;i++){
+//         return element = 32;
+//     }
+// }
+// function findThirty(a) {
+//     for(i =0 ; i<=a.length;i++){
+//         return element = 32;
+//     }
+// }
+// function findThirtyOne(a) {
+//     for(i =0 ; i<=a.length;i++){
+//         return element = 32;
+//     }
+// }
+// function findThirtyTwo(a) {
+//     for(i =0 ; i<=a.length;i++){
+//         return element = 32;
+//     }
+// }
 
 var middlewareToMakeTicksUnique = function(next) {
     return function(value, index, values) {
@@ -138,45 +63,58 @@ var middlewareToMakeTicksUnique = function(next) {
         return nextValue;
     }
 };
+var minY = parseInt(999999999);
+var maxY = parseInt(-999999999);
 
-async function axes(obj, xAxes,yAxes){
+async function axes(obj,yAxes){
     var res = await fetch(baseURL + '/api');
     var data = await res.json();
     
     let temp = obj;
-
     for(item of data){
-        time = item.timestamp;
-        used =  item.used;
-        available = item.available;
-        temperature = item.temperature;
+        
+        temp.xs.push(item.timestamp);
+        if(yAxes == "used") {
+            if(minY > item.used)
+                minY = item.used;
+            
+            if(maxY < item.used)
+                maxY = item.used;
+            
+            temp.ys.push(item.used);
+        }
+        if(yAxes == "temperature"){
+            if(minY > item.temperature)
+                minY = item.temperature;
 
-        if(xAxes == "time") temp.xs.push(time);
-        if(xAxes == "used") temp.xs.push(used);
-        if(xAxes == "temperature") temp.xs.push(temperature);
-        if(xAxes == "available") temp.xs.push(available);
+            if(maxY < item.temperature)
+                maxY = item.temperature;
+            
+            temp.ys.push(item.temperature);
+        }
+        if(yAxes == "available"){ 
+            if(minY > item.available)
+                minY = item.available;
         
-        if(yAxes == "time") temp.ys.push(time);
-        if(yAxes == "used") temp.ys.push(used);
-        if(yAxes == "temperature") temp.ys.push(temperature);
-        if(yAxes == "available") temp.ys.push(available);
+            if(maxY < item.available)
+                maxY = item.available;
+            
+            temp.ys.push(item.available);
+        }
         
-         console.log("Temperature: " + temperature + " " + "Time: " + time + " " + "Memory used: " + used + " " + "Memory Available: " + available); 
+        
+         console.log("Temperature: " + item.temperature + " " + "Time: " + item.time + " " + "Memory used: " + item.used + " " + "Memory Available: " + item.available); 
     }
     obj = temp;
 }
 
-async function chartIt1(xAxes,yAxes){
+async function chartIt1(yAxes){
     const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
    
     let obj = {xs: [], ys:[]};
 
-    await axes(obj, xAxes,yAxes);
-    console.log("28: "+obj.ys.find(findTwentyEight));
-    console.log("29: "+obj.ys.find(findTwentyNine));
-    console.log("30: "+obj.ys.find(findThirty));
-    console.log("31: "+obj.ys.find(findThirtyOne));
-    console.log("32: "+obj.ys.find(findThirtyTwo));
+    await axes(obj, yAxes);
+   
     const ctx = document.getElementById('chart1').getContext('2d');
     
     let data1 = {
@@ -186,28 +124,24 @@ async function chartIt1(xAxes,yAxes){
             label: false,
             fill: false,
             backgroundColor: backgroundColors,
-              borderColor: borderColors,
-              borderWidth: 1                  
-        }
-    ]
+            borderColor: borderColors,
+            borderWidth: 1  ,
+            hoverBackgroundColor: '#0673aa',
+            hoverBorderColor: '#044769'               
+        }]
     };
-
     let scales1 = {
         yAxes:[{
             ticks:{
-                callback: function(value){
-                    if(yAxes == "temperature") 
-                        return  value;
-                    else if(yAxes == "time") 
-                        return new Date(value).toLocaleDateString([], dateType);
-                    else if(yAxes == "used") 
+                callback: function(value, index, values){
+                    if(Math.floor(value) === value && yAxes == "temperature") 
                         return value;
-                    else if(yAxes == "available") 
+                    else if(Math.floor(value) === value && yAxes == "used") 
+                        return value;
+                    else if(Math.floor(value) === value && yAxes == "available") 
                         return value;
                 },
-                maxTicksLimit:100
             },
-            stacked: true,
             scaleLabel: {
                 display: true,
                 fontSize: 18,
@@ -218,14 +152,7 @@ async function chartIt1(xAxes,yAxes){
                 display: true,
                 ticks:{
                     callback: function(value) { 
-                        if(xAxes == "temperature") 
-                            return  value;
-                        else if(xAxes == "time") 
-                            return new Date(value).toLocaleDateString([], dateType);
-                        else if(xAxes == "used") 
-                            return value;
-                        else if(xAxes == "available") 
-                            return value;
+                        return new Date(value).toLocaleDateString([], dateType);
                     },
                     maxRotation: 90,
                     minRotation: 20,
@@ -235,11 +162,18 @@ async function chartIt1(xAxes,yAxes){
                 scaleLabel: {
                     display: true,
                     fontSize: 18,
-                    labelString: labelsX(xAxes)
+                    labelString: 'Date[dd/mm/yy hh/mm/ss]'
                 },
                 showXLabels:true,
         }]
     };
+
+    if (myChart1) {
+        myChart1.destroy();
+        minY = 999999999;
+        maxY = -99999999;
+    }
+    
 
     myChart1 = new Chart(ctx, {
         type: 'bar',
@@ -260,33 +194,59 @@ async function chartIt1(xAxes,yAxes){
             }
     }); 
 }
-    if (myChart1) {
-        myChart1.destroy();
+
+consoleText(['Servers monitoring', 'Scripts', 'Charts.','Made with Love'], 'text',['white','white','white']);
+
+function consoleText(words, id, colors) {
+  if (colors === undefined) colors = ['#fff'];
+  var visible = true;
+  var con = document.getElementById('console');
+  var letterCount = 1;
+  var x = 1;
+  var waiting = false;
+  var target = document.getElementById(id)
+  target.setAttribute('style', 'color:' + colors[0])
+  window.setInterval(function() {
+
+    if (letterCount === 0 && waiting === false) {
+      waiting = true;
+      target.innerHTML = words[0].substring(0, letterCount)
+      window.setTimeout(function() {
+        var usedColor = colors.shift();
+        colors.push(usedColor);
+        var usedWord = words.shift();
+        words.push(usedWord);
+        x = 1;
+        target.setAttribute('style', 'color:' + colors[0])
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (letterCount === words[0].length + 1 && waiting === false) {
+      waiting = true;
+      window.setTimeout(function() {
+        x = -1;
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (waiting === false) {
+      target.innerHTML = words[0].substring(0, letterCount)
+      letterCount += x;
     }
+  }, 120)
+  window.setInterval(function() {
+    if (visible === true) {
+      con.className = 'console-underscore hidden'
+      visible = false;
 
+    } else {
+      con.className = 'console-underscore'
 
-    document.querySelector('.custom-select-wrapper').addEventListener('click', function() {
-        this.querySelector('.custom-select').classList.toggle('open');
-    })
-
-    
-             
-for (const option of document.querySelectorAll(".custom-option")) {
-    option.addEventListener('click', function() {
-        if (!this.classList.contains('selected')) {
-            this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
-            this.classList.add('selected');
-            this.closest('.custom-select').querySelector('.custom-select__trigger span').textContent = this.textContent;
-        }
-    })
+      visible = true;
+    }
+  }, 400)
 }
 
-
-window.addEventListener('click', function(e) {
-    const select = document.querySelector('.custom-select')
-    if (!select.contains(e.target)) {
-        select.classList.remove('open');
-    }
-});
-
-
+function TestsFunction() {
+    var T = document.getElementById("container_graphs_1");
+    T.style.display = "block";
+}

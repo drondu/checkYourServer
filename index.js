@@ -12,6 +12,7 @@ app.use(express.json());
 const database = new Datastore({filename: 'database.db', autoload: true });
 database.loadDatabase();
 
+
 app.post('/api', (request, response) => {
   const data = request.body;
   const timestamp = Date.now();
@@ -24,7 +25,7 @@ app.post('/api', (request, response) => {
 app.get('/api', (request, response) => {
 	database.find({})
 			.sort({'timestamp': 1}).skip(0).limit(10000).exec((err,data)=>{ 
-					response.json(data)});
+					response.json(data)}); 
 });
 
 
