@@ -1,3 +1,23 @@
+const xs = [];
+const ys = [];
+
+async function login_push(user,pass){
+  var res = await fetch(baseURL + '/api');
+  var data = await res.json();
+  
+  for(item of data){
+    console.log(user+" "+pass);
+    console.log(item.user+" "+item.pass);
+    if(item.user == user && item.pass == pass){
+      
+      alert("User pass");
+    }
+    
+  }
+
+  return {xs,ys};
+}
+
 consoleText(['Servers monitoring', 'Scripts', 'Charts','HTML','CSS','SSH','Made with Love'], 'text',['white','white','white']);
 
 function consoleText(words, id, colors) {
