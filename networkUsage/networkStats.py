@@ -6,19 +6,17 @@ import random
 from random import randint
 
 fin = open('net.log','r')
-fout = open('../DBs/netUsage.db', 'a')
 
 def readNames(names):
 	time.sleep(1)
 	lineCount = 0
-	print('readnames')
 	line = fin.readline()
 	while line and lineCount < 2:
 		time.sleep(1)
 		for el in line.split():
 			if lineCount == 0: 
 				names.append(el)
-				print(el)
+				# print(el)
 				continue
 			if lineCount == 1:
 				break
@@ -37,11 +35,9 @@ def readValues():
 	lineCount = 0
 	names = []
 	readNames(names)
-	print('caine')
 	line = fin.readline()
-	print(line)
 	while line:
-		print('muieeee')
+		fout = open('../DBs/netUsageMother.db', 'a')
 		time.sleep(1)
 		columnCnt = 0
 		namesCnt = 0
@@ -57,8 +53,9 @@ def readValues():
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
 				temp += getIdAndTimeStamp()	
-				print(temp)
+				# print(temp)
 				fout.write(temp)
+				fout.flush()
 				temp = ''
 			columnCnt += 1
 			if columnCnt == 2:

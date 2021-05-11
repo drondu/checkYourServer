@@ -14,7 +14,7 @@ def getHostName():
 
 fin = open('diskUsageStripped.txt','r')
 fin2 = open('diskTempStripped.txt', 'r')
-fout = open('../DBs/diskUsage.db', 'a')
+fout = open('../DBs/diskUsageMother.db', 'a')
 
 line = fin2.readline()
 line = line.rstrip()
@@ -63,6 +63,7 @@ temp += ',"_id":"'+ ''.join(random.choices(chars, k=30))
 temp +=  '"}\n'
 # print('temp: ' + temp)			
 fout.write(temp)
+fout.flush()
 
 fin.close()
 fout.close()

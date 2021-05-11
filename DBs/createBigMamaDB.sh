@@ -2,11 +2,10 @@
 
 while :
 do
-	sleep 5
+	sleep 3
 
-	cat diskUsageServer0.db >> diskUsage.db 
-	cat netUsageServer0.db >> netUsage.db
-	cat diskUsageServer1.db >> diskUsage.db 
-	cat netUsageServer1.db >> netUsage.db
+	cat diskUsage*.db >> database.db 
+	cat netUsage*.db >> database.db
 
+	rm -rf diskUsage* netUsage* 
 done

@@ -15,18 +15,17 @@ start_network()
 
 create_db() 
 {
-	cd DBs 
-	nohup ./createBigMamaDB.sh </dev/null >/dev/null 2>&1 &
+	cd DBs && nohup ./createBigMamaDB.sh </dev/null >/dev/null 2>&1 &
 }
 
 start_server0() 
 { 
-	sshpass -proot ssh ubuntu@10.124.191.26 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
+	sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
 }
 
 start_server1() 
 { 
-	sshpass -proot ssh ubuntu@10.124.191.22 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
+	sshpass -proot ssh ubuntu@10.238.184.245 'cd checkYourServer && nohup ./start.sh &' 
 }
 
 
@@ -40,7 +39,7 @@ prepare_env()
 	rm -rf net.log
 	cd ..
 	cd DBs
-	rm -rf netUsage.db diskUsage.db
+	rm -rf net.db disk.db database.db
 	rm -rf diskUsageServer0.db diskUsageServer1.db netUsageServer0.db netUsageServer1.db
 	cd ..
 	rm -rf hostname.txt 
@@ -55,7 +54,7 @@ start_aggregated_machines()
 start_local_machine()
 {
 	start_disk | start_network
-	#create_db
+	create_db
 }
 
 
@@ -64,8 +63,6 @@ start_local_machine()
 echo "Starting scripts"
 	
 prepare_env
-start_local_machine #| start_aggregated_machines
-
-
+start_local_machine | start_aggregated_machines
 
 echo "Scripts are started"
