@@ -2,6 +2,12 @@
 var dateType = {month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
 var myChart1;
 
+function convertTime(unixTimestamp){
+    const dateObject = new Date(unixTimestamp);
+    const humanDateFormat = dateObject.toLocaleString();
+    return humanDateFormat;
+}
+
 function labelsY(yAxes){
     if(yAxes == "temperature") 
         return 'Temperature[°C]';
@@ -11,6 +17,10 @@ function labelsY(yAxes){
         return 'Memory used[GB]';
     if(yAxes == "available") 
         return 'Memory available[GB]';
+    if(yAxes == "downspeed") 
+        return 'Down Speed';
+    if(yAxes == "upspeed") 
+        return 'Up Speed';  
 }
 
 function processTooltipModel(model) {
@@ -21,34 +31,15 @@ function processTooltipModel(model) {
     tooltip.style.left = model.caretX + "px";
     tooltip.style.top = model.caretY - 66 - 5 + "px";
     tooltip.style.display = "block";
-    tooltip.querySelector(".tooltip-label").textContent = model.dataPoints[0].label;
-    tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value;
-} 
-// function findTwentyEight(a) {
-//     for(i =0 ; i<=a.length;i++){
-//         return element = 32;
-//     }
-// }
-// function findTwentyNine(a) {
-//     for(i =0 ; i<=a.length;i++){
-//         return element = 32;
-//     }
-// }
-// function findThirty(a) {
-//     for(i =0 ; i<=a.length;i++){
-//         return element = 32;
-//     }
-// }
-// function findThirtyOne(a) {
-//     for(i =0 ; i<=a.length;i++){
-//         return element = 32;
-//     }
-// }
-// function findThirtyTwo(a) {
-//     for(i =0 ; i<=a.length;i++){
-//         return element = 32;
-//     }
-// }
+
+    const john = model.dataPoints[0].label.toLocaleString();
+    const ion = parseInt(john);
+    const dateObject = new Date(ion);
+    console.log(convertTime(dateObject));
+
+    tooltip.querySelector(".tooltip-label").textContent = convertTime(dateObject);
+    tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value; 
+}
 
 var middlewareToMakeTicksUnique = function(next) {
     return function(value, index, values) {
@@ -63,8 +54,6 @@ var middlewareToMakeTicksUnique = function(next) {
         return nextValue;
     }
 };
-var minY = parseInt(999999999);
-var maxY = parseInt(-999999999);
 
 async function axes(obj,yAxes){
     var res = await fetch(baseURL + '/api');
@@ -74,37 +63,26 @@ async function axes(obj,yAxes){
     for(item of data){
         
         temp.xs.push(item.timestamp);
-        if(yAxes == "used") {
-            if(minY > item.used)
-                minY = item.used;
-            
-            if(maxY < item.used)
-                maxY = item.used;
-            
-            temp.ys.push(item.used);
-        }
-        if(yAxes == "temperature"){
-            if(minY > item.temperature)
-                minY = item.temperature;
-
-            if(maxY < item.temperature)
-                maxY = item.temperature;
-            
+        if(yAxes == "used") 
+            temp.ys.push(item.useful);
+    
+        if(yAxes == "temperature")
             temp.ys.push(item.temperature);
-        }
-        if(yAxes == "available"){ 
-            if(minY > item.available)
-                minY = item.available;
         
-            if(maxY < item.available)
-                maxY = item.available;
-            
+        if(yAxes == "available")
             temp.ys.push(item.available);
-        }
         
+        if(yAxes == "downspeed")
+            temp.ys.push(item.dwnSpeed);
+
+        if(yAxes == "upspeed")
+            temp.ys.push(item.upSpeed);
         
-         console.log("Temperature: " + item.temperature + " " + "Time: " + item.time + " " + "Memory used: " + item.used + " " + "Memory Available: " + item.available); 
+        console.log("Host: " + item.host + " Name: "+ item.name + " Temperature: " + item.temperature + " Time: " + item.timestamp  + " Memory used: " + item.used + " Memory Available: " + item.available); 
+        console.log("Host: " + item.host + " Name: " + item.name + " DownSpeed: " + item.dwnSpeed + " UpSpeed: " + item.upSpeed + " Time: " + item.timestamp );
+        
     }
+
     obj = temp;
 }
 
@@ -140,6 +118,10 @@ async function chartIt1(yAxes){
                         return value;
                     else if(Math.floor(value) === value && yAxes == "available") 
                         return value;
+                    else if(Math.floor(value) === value && yAxes == "downspeed") 
+                        return value;
+                    else if(Math.floor(value) === value && yAxes == "upspeed") 
+                        return value;
                 },
             },
             scaleLabel: {
@@ -149,29 +131,25 @@ async function chartIt1(yAxes){
             }
         }],
         xAxes:[{
+            display: true,
+            ticks:{
+                callback: convertTime,
+                maxRotation: 90,
+                minRotation: 20,
+                maxTicksLimit:100,
+            },
+            stacked: true,
+            scaleLabel: {
                 display: true,
-                ticks:{
-                    callback: function(value) { 
-                        return new Date(value).toLocaleDateString([], dateType);
-                    },
-                    maxRotation: 90,
-                    minRotation: 20,
-                    maxTicksLimit:100,
-                },
-                stacked: true,
-                scaleLabel: {
-                    display: true,
-                    fontSize: 18,
-                    labelString: 'Date[dd/mm/yy hh/mm/ss]'
-                },
-                showXLabels:true,
+                fontSize: 18,
+                labelString: 'Date[dd/mm/yy hh/mm/ss]'
+            },
+            showXLabels:true,
         }]
     };
 
     if (myChart1) {
         myChart1.destroy();
-        minY = 999999999;
-        maxY = -99999999;
     }
     
 
