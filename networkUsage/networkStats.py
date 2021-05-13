@@ -1,9 +1,11 @@
 #! /usr/bin/p9ython
-from datetime import datetime
 import time
-import string
-import random 
-from random import randint
+import sys
+sys.path.append('../pyHelpers')
+
+from gethost import getHostName
+import timeandid as tid
+import time
 
 fin = open('net.log','r')
 
@@ -16,7 +18,6 @@ def readNames(names):
 		for el in line.split():
 			if lineCount == 0: 
 				names.append(el)
-				# print(el)
 				continue
 			if lineCount == 1:
 				break
@@ -24,19 +25,14 @@ def readNames(names):
 		lineCount += 1
 		line = fin.readline()
 
-def getHostName():
-	hin = open('../hostname.txt', 'r')
-	name = hin.readline()
-	hin.close()
-	return name.rstrip('\n')
-
-
 def readValues():
 	lineCount = 0
 	names = []
+	# print("hope")
 	readNames(names)
 	line = fin.readline()
 	while line:
+		# print("john")
 		fout = open('../DBs/netUsageMother.db', 'a')
 		time.sleep(1)
 		columnCnt = 0
@@ -52,7 +48,7 @@ def readValues():
 				temp += '","dwnSpeed":"' + el
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
-				temp += getIdAndTimeStamp()	
+				temp += tid.getTimeStamp() + tid.getID()	
 				# print(temp)
 				fout.write(temp)
 				fout.flush()
@@ -60,6 +56,7 @@ def readValues():
 			columnCnt += 1
 			if columnCnt == 2:
 				namesCnt += 1
+		fout.close()
 		lineCount += 1
 
 		if lineCount == 21:
@@ -69,17 +66,8 @@ def readValues():
 			 
 		line = fin.readline()
 
-def getIdAndTimeStamp():
-	ts = int(int(datetime.now().strftime("%s%f"))/1000)
-	chars = string.ascii_letters + string.digits
-	temp = '","timestamp":' + str(ts)
-	temp += ',"_id":"'+ ''.join(random.choices(chars, k=30)) 
-	temp +=  '"}\n'
-	return temp
 
-
-getHostName()
+#readNames()
 readValues()
 
 fin.close()
-fout.close()

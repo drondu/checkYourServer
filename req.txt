@@ -23,8 +23,14 @@ sudo apt install smartmontools
 **** hddtemp ****
 sudo apt install sshpass
 
+
 **** ssh server ****
 sudo apt-get install openssh-server
+
+
+**** find out disk type ****
+cat /sys/block/sda/queue/rotational -- 0 for ssd, 1 for hdd, error for m2
+
 
 ========== DOCKER ============
 
@@ -44,7 +50,6 @@ multipass shell docker_name --- to enter the docker
 --> sudo nano /etc/ssh/sshd_config
 	::: PasswordAuthentication yes
 --> sudo systemctl restart sshd
-
 
 --> clone the repo
 
