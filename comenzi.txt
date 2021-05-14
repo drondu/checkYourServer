@@ -9,3 +9,25 @@ git add *
 git commit -m "com"
 git push origin webTool 
 
+---------pt login in fisier trebuie instalate toate astea-------
+cd Desktop/test_login/
+npm start
+npm install passport-local
+npm start
+npm install passport-local-mongose
+npm install passport-local-mongoose
+npm start
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+npm start
+sudo systemctl start mongod
+sudo systemctl daemon-reload
+sudo systemctl status mongod
+sudo systemctl enable mongod
+mongo
+npm start
+history
