@@ -79,9 +79,6 @@ function sleep(ms) {
 }
 
 app.post('/login', async(req, res) =>{
-    
-    // database.accounts.find({"username":"CAR"}, function (err,docs){ console.log(docs); });
-
 
     try{
         var foundUser; 
@@ -94,13 +91,11 @@ app.post('/login', async(req, res) =>{
         await sleep(100);
 
         if (foundUser.username !== "") {
-            console.log("faccc");
             let submittedPass = req.body.password;
-            console.log("MA MUIE: " + submittedPass);
             const passwordMatch = await bcrypt.compare(submittedPass, foundUser.password);
             if (passwordMatch) {
                 var usrname = foundUser.username;
-                res.sendFile(path.join(__dirname+'/public/pages/charts.html'));
+                res.render(path.join(__dirname+'/public/pages/charts.html'), {uname: foundUser.username});
             } 
             else {
                 res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align ='center'><a href='./login.html'>login again</a></div>");
