@@ -14,7 +14,6 @@ cd Desktop/test_login/
 npm start
 npm install passport-local
 npm start
-npm install passport-local-mongose
 npm install passport-local-mongoose
 npm start
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -30,4 +29,21 @@ sudo systemctl status mongod
 sudo systemctl enable mongod
 mongo
 npm start
-history
+
+
+----------------sa vad bd si continutul lor------------
+$ mongo - ca sa itru in mongo shell
+> show dbs
+    admin      0.000GB
+    auth_demo  0.000GB
+    config     0.000GB
+    local      0.000GB
+> use auth_demo
+    switched to db auth_demo
+> show collections
+    users
+> db.users.find()
+    continutul db-ului
+
+------------ca sa export bd in fisier .db-------
+$ mongoexport --db auth_demo --collection users --out database_users.db

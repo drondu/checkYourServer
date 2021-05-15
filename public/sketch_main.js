@@ -1,20 +1,20 @@
-const xs = [];
-const ys = [];
+var xs = [];
+var ys = [];
 
 async function login_push(user,pass){
   var res = await fetch(baseURL + '/api');
   var data = await res.json();
-  
+
   for(item of data){
-    console.log(user+" "+pass);
-    console.log(item.user+" "+item.pass);
-    if(item.user == user && item.pass == pass){
-      
-      alert("User pass");
-    }
+    user = item.user;
+    pass = item.pass
+
+    xs.push(user);
+    ys.push(pass);
     
   }
-
+  console.log(xs);
+  console.log(ys);
   return {xs,ys};
 }
 

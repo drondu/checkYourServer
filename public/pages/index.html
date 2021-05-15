@@ -1,95 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chart</title>
-    <link rel="shortcut icon" href="#">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="../scripts/constants.js" defer></script>
-    <script src="../sketch.js" defer></script>
-    <link rel="stylesheet" href="../style.css">
-
-   
-<body>   
-    <div class='console-container'><span id='text'></span>
-        <div class='console-underscore' id='console'>&#95;
-        </div>
-    </div>
-    <div class="container_input">
-        <div class="row">
-            <label>Choose axe Y parameter:</label>
-            <select name="axeY" id="axeY">
-                <option value="temperature">Temperature</option>
-                <option value="used">Used memory</option>
-                <option value="available">Available memory</option>
-                <option value="downspeed">Down Speed</option>
-                <option value="upspeed">Up Speed</option>
-            </select>
-        </div>
-        <!-- <div class="row">
-            <label class="field field_v1" >
-                <input class="field__input" id="minX" placeholder="e.g. 20">
-                <span class="field__label-wrap">
-                  <span class="field__label">Axe Y min parameter</span>
-                </span>
-            </label>
-        </div>
-        <div class="row">
-            <label class="field field_v2" >
-                <input class="field__input" id="maxX" placeholder="e.g. 20">
-                <span class="field__label-wrap">
-                  <span class="field__label">Axe Y max parameter</span>
-                </span>
-            </label>
-        </div> -->
-        <div class="row">
-            <select id="selectMin">
-                <option>Choose min</option>
-            </select>
-        </div>
-        <div class="row">
-            <select id="selectMax">
-                <option>Choose max</option>
-            </select>
-        </div>
-        <div class="row">
-            <p></p>
-            <button class="button" id="submit" onclick="TestsFunction()">Submit</button>
-        </div>
-    </div>
+	<meta charset = "UTF-8">
+  	<title> My Form </title>
+  	<style>
+        a{
+            font-size: 40px;
+        }
+    	</style>
+</head>
+<body align='center'>
+    <a href="./registration.html">Register</a>
     <br>
-    
-    <div class="container_graphs" style="position: relative" >
-            <div class="container_graphs_1" id ="container_graphs_1" style="display:none">
-                <canvas id="chart1"></canvas>
-                <div id="tooltip">
-                    <div class="tooltip-label"></div>
-                    <div class="tooltip-value">
-                        <span class="color-circle"></span>
-                        <span class="value"></span>
-                    </div>
-                </div>
-            </div>
-    </div>
-   
-    <script>
-        const submit = document.getElementById('submit');
-
-        submit.addEventListener('click', async event => {
-            const axeY = document.getElementById('axeY').value;
-            const selectMin = document.getElementById('selectMin').value;
-            const selectMax = document.getElementById('selectMax').value;
-
-            chartIt1(axeY,selectMin,selectMax);
-
-            console.clear();
-        });   
-        
-    </script>
+    <a href="./login.html">Login</a>
 </body>
 </html>
