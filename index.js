@@ -23,6 +23,8 @@ database.accounts = new Datastore({filename: 'accounts.db', autoload: true })
 
 database.accounts.loadDatabase();
 
+
+
 app.post('/api', (request, response) => {
   const data = request.body;
   const timestamp = Date.now();
@@ -112,6 +114,7 @@ app.post('/login', async(req, res) =>{
         res.send("Internal server error");
     }
 });
+
 
 const port = process.env.PORT || 3000; // process.env.port is Heroku's port if you choose to deploy the app there
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
