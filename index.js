@@ -16,6 +16,9 @@ app.set('view engine', 'html');
 
 app.use(cors());
 app.use(express.static(__dirname + "/public/pages"));
+
+app.use(express.static(path.join(__dirname,'/styles/')));
+
 app.use(express.json());
 
 var database = new Datastore({filename: 'database.db', autoload: true });
@@ -46,6 +49,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/',(req,res) => {
     res.sendFile(path.join(__dirname,'index.html'));
+    res.sendFile(path.join(__dirname,'sketch.js'));
+    res.sendFile(path.join(__dirname,'styles/style.css'));
 });
 
 
@@ -67,7 +72,8 @@ app.post('/register', async (req, res) => {
             database.accounts.insert(newUser);
             
             // console.log('User list', users);
-            res.send("<div align ='center'><h2>Registration successful</h2></div><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
+            res.sendFile(path.join(__dirname,'index.html'))
+            res.send("<br><div align ='center'><h2>Registration successful</h2></div><br><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
         } else {
             res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
         }

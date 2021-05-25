@@ -1,22 +1,22 @@
-var xs = [];
-var ys = [];
+// var xs = [];
+// var ys = [];
 
-async function login_push(user,pass){
-  var res = await fetch(baseURL + '/api');
-  var data = await res.json();
+// async function login_push(user,pass){
+//   var res = await fetch(baseURL + '/api');
+//   var data = await res.json();
 
-  for(item of data){
-    user = item.user;
-    pass = item.pass
+//   for(item of data){
+//     user = item.user;
+//     pass = item.pass
 
-    xs.push(user);
-    ys.push(pass);
+//     xs.push(user);
+//     ys.push(pass);
     
-  }
-  console.log(xs);
-  console.log(ys);
-  return {xs,ys};
-}
+//   }
+//   console.log(xs);
+//   console.log(ys);
+//   return {xs,ys};
+// }
 
 consoleText(['Servers monitoring', 'Scripts', 'Charts','HTML','CSS','SSH','Made with Love'], 'text',['white','white','white']);
 
