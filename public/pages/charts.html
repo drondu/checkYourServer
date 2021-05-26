@@ -10,9 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
-    <script type=“text/javascript” src="../scripts/constants.js" defer></script>
-    <script type=“text/javascript” src="../sketch.js" defer></script>
-    <link type="text/css" href="../styles/style.css">
+    <script type=“text/javascript” src="scripts/constants.js" defer></script>
+    <script type=“text/javascript” src="../scripts/sketch.js" defer></script>
+   
+    <link type="text/css"  rel="stylesheet" href="styles/style.css" defer>
    
 <body>   
     <div class='console-container'><span id='text'></span>
@@ -21,7 +22,8 @@
     </div>
     <div class="container_input">
         <div class="row">
-            <h1>Bello <%= uname %></h1>
+            <!-- <h1>Bello <%= uname %></h1> -->
+            <h1 id='username'>USERNAAAMEE</h1>
 
             <label>Choose axe Y parameter:</label>
             <select name="axeY" id="axeY">
@@ -91,6 +93,14 @@
             console.clear();
         });   
         
+        const userSession = localStorage.getItem("session");
+        const user = JSON.parse(userSession);
+        const header = document.getElementById("username");
+        console.log(header);
+        console.log(user);
+        console.log(userSession);
+        header.innerHTML = user.user.username;
+
     </script>
 </body>
 </html>

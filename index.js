@@ -17,7 +17,11 @@ app.set('view engine', 'html');
 app.use(cors());
 app.use(express.static(__dirname + "/public/pages"));
 
-app.use(express.static(path.join(__dirname,'/styles/')));
+app.use("/styles",express.static(__dirname +"/public/styles/"));
+
+app.use("/scripts",express.static(__dirname +"/public/scripts/"));
+
+app.use(express.static(__dirname + "/public"));
 
 app.use(express.json());
 
@@ -49,8 +53,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/',(req,res) => {
     res.sendFile(path.join(__dirname,'index.html'));
-    res.sendFile(path.join(__dirname,'sketch.js'));
-    res.sendFile(path.join(__dirname,'styles/style.css'));
+   
 });
 
 
@@ -72,7 +75,7 @@ app.post('/register', async (req, res) => {
             database.accounts.insert(newUser);
             
             // console.log('User list', users);
-            res.sendFile(path.join(__dirname,'index.html'))
+            //res.sendFile(path.join(__dirname,'index.html'))
             res.send("<br><div align ='center'><h2>Registration successful</h2></div><br><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
         } else {
             res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
@@ -88,37 +91,35 @@ function sleep(ms) {
 
 app.post('/login', async(req, res) =>{
 
-    try{
-        var foundUser; 
+    
+        
         database.accounts.find({"email":req.body.email}, async  function (err,docs){ 
             if (err) throw err;
-            foundUser = docs[0];
             
-        });
-        
-        await sleep(100);
+           
 
-        if (foundUser.username !== "") {
-            let submittedPass = req.body.password;
-            const passwordMatch = await bcrypt.compare(submittedPass, foundUser.password);
-            if (passwordMatch) {
-                var usrname = foundUser.username;
-                res.render(path.join(__dirname+'/public/pages/charts.html'), {uname: foundUser.username});
-            } 
-            else {
-                res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align ='center'><a href='./login.html'>login again</a></div>");
-            }
-        }
-        else {
-    
-            let fakePass = `$2b$$10$ifgfgfgfgfgfgfggfgfgfggggfgfgfga`;
-            await bcrypt.compare(req.body.password, fakePass);
-    
-            res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align='center'><a href='./login.html'>login again<a><div>");
-        }
-    } catch{
-        res.send("Internal server error");
-    }
+           if(docs.length == 1){
+            const foundUser = docs[0];
+                const founUser_pass = foundUser.password;
+                try{
+                   const match = await bcrypt.compare(req.body.password,founUser_pass);
+                   if(match){
+                       res.status(200).json({user:foundUser});
+                   }else{
+                    res.status(401).json({message:"Your pass is invalid!!!!"});
+                   }
+                }catch{
+                    res.status(401).json({message:"Your pass is invalid!!!!"});
+                }
+           }else{
+            res.status(404).json({message:"User not found!!!!"});
+           }
+           
+
+        });
+
+        //await sleep(100);
+
 });
 
 
