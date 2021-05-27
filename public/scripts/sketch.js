@@ -89,7 +89,6 @@ async function axes(obj,yAxes){
     obj = temp;
 }
 async function chartIt0(yAxes){
-    const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
    
     let obj = {xs: [], ys:[]};
 
@@ -105,7 +104,7 @@ async function chartIt0(yAxes){
             backgroundColor: backgroundColors,
             borderColor: borderColors,
             borderWidth: 1  ,
-            hoverBackgroundColor: '#0673aa',
+            hoverBackgroundColor: '#000000',
             hoverBorderColor: '#044769'               
         }]
     };
@@ -269,10 +268,14 @@ async function chartIt1(yAxes,minTime,maxTime){
 
     var selectMin = document.getElementById("selectMin");
     var selectMax = document.getElementById("selectMax");
+
+    var selectMinDateFormat = convertTime(parseInt(selectMin));
+    var selectMazDateFormat = convertTime(parseInt(selectMax));
     var options = obj.xs;
 
     for(var i = 0; i < options.length; i++) {
-        var opt = options[i];
+        var opt = convertTime(options[i]);
+        console.log(opt);
         var el = document.createElement("option");
         var el2 = document.createElement("option");
 
