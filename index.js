@@ -75,10 +75,13 @@ app.post('/register', async (req, res) => {
             database.accounts.insert(newUser);
             
             // console.log('User list', users);
-            //res.sendFile(path.join(__dirname,'index.html'))
-            res.send("<br><div align ='center'><h2>Registration successful</h2></div><br><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
+            res.redirect('pages/registration_succesful.html');
+           // res.sendFile(path.join(__dirname,'pages/registration_succesful.html'));
+            //res.send("<br><div align ='center'><h2>Registration successful</h2></div><br><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
         } else {
-            res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
+            //res.sendFile(path.join(__dirname,'pages/email_used.html'));
+            res.redirect('pages/email_used.html');
+            //res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
         }
     } catch{
         res.send("Internal server error");
