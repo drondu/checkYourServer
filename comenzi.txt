@@ -1,49 +1,40 @@
 de fiecare data cand vreau sa pornesc serverul:
 npm run dev-start
 start live server pe index.html
-
-in loc de year e timestamp si in loc de temperature e harddisk
-
+------------------pentru git--------------
 git status
 git add *
 git commit -m "com"
 git push origin webTool 
 
----------pt login in fisier trebuie instalate toate astea-------
-cd Desktop/test_login/
-npm start
-npm install passport-local
-npm start
-npm install passport-local-mongoose
-npm start
-wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-sudo apt-get install gnupg
-wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-npm start
-sudo systemctl start mongod
-sudo systemctl daemon-reload
-sudo systemctl status mongod
-sudo systemctl enable mongod
-mongo
-npm start
+
+---------------PENTRU INSTALRE SI RULARE------------------
+npm install body-parser --save
+npm install express-session --save
+npm install passport passport-local --save
+npm install -g nodemon
+npm install --save-dev nodemon
+npm install body-parser --save
+npm install express
+npm install express bcrypt body-parser --save
+
+------- ca sa ii dai start -----
+cd checkYourServer
+sudo npm run dev-start 
+
+---------bug------------
+pt a afisa graficele,dai submit, apoi selectezi min si max
+apoi iar submit ca sa iti afiseze graficul cu range-ul ales
 
 
-----------------sa vad bd si continutul lor------------
-$ mongo - ca sa itru in mongo shell
-> show dbs
-    admin      0.000GB
-    auth_demo  0.000GB
-    config     0.000GB
-    local      0.000GB
-> use auth_demo
-    switched to db auth_demo
-> show collections
-    users
-> db.users.find()
-    continutul db-ului
-
-------------ca sa export bd in fisier .db-------
-$ mongoexport --db auth_demo --collection users --out database_users.db
+---------usernameul-----------
+se afiseaza in chart.html
+"
+const userSession = localStorage.getItem("session");
+const user = JSON.parse(userSession);
+const header = document.getElementById("username");
+console.log(header);
+console.log(user);
+console.log(userSession);
+header.innerHTML = "Hello, "+ user.user.username + "!";
+"
