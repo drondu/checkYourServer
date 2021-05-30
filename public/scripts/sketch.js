@@ -42,19 +42,6 @@ function processTooltipModel(model) {
     tooltip.querySelector(".tooltip-value .value").textContent = model.dataPoints[0].value; 
 }
 
-var middlewareToMakeTicksUnique = function(next) {
-    return function(value, index, values) {
-        var nextValue = next(value);
-
-        if (index && values.length > index+1 && // always show first and last tick
-            // don't show if next or previous tick is same
-            (next(values[index + 1]) === nextValue || next(values[index - 1]) === nextValue)
-        ){
-            return null;
-        }
-        return nextValue;
-    }
-};
 
 async function axes(obj,yAxes){
     var res = await fetch(baseURL + '/api');
@@ -78,12 +65,12 @@ async function axes(obj,yAxes){
 
         if(yAxes == "upspeed")
             temp.ys.push(item.upSpeed);
-        if(yAxes == "used" || yAxes == "temperature" || yAxes == "available")
+        if(yAxes == "used" || yAxes == "temperature" || yAxes == "available"){
             console.log("Host: " + item.host + " Name: "+ item.name + " Temperature: " + item.temperature + " Time: " + item.timestamp  + " Memory used: " + item.used + " Memory Available: " + item.available); 
-        
-        if(yAxes == "downspeed" || yAxes == "upspeed")
-            console.log("Host: " + item.host + " Name: " + item.name + " DownSpeed: " + item.dwnSpeed + " UpSpeed: " + item.upSpeed + " Time: " + item.timestamp );
-        
+        }else{
+            if(yAxes == "downspeed" || yAxes == "upspeed")
+                console.log("Host: " + item.host + " Name: " + item.name + " DownSpeed: " + item.dwnSpeed + " UpSpeed: " + item.upSpeed + " Time: " + item.timestamp );
+        }
     }
 
     obj = temp;
@@ -93,7 +80,7 @@ if (myChart1 ) {
     myChart1.destroy();  
 }
 
-async function chartIt1(yAxes,minTime,maxTime){
+async function chartIt1(yAxes,minTime,maxTime,host){
     const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
    
     let obj = {xs: [], ys:[]};
@@ -186,11 +173,8 @@ async function chartIt1(yAxes,minTime,maxTime){
 
     var selectMin = document.getElementById("selectMin");
     var selectMax = document.getElementById("selectMax");
-
-    var selectMinDateFormat = convertTime(parseInt(selectMin));
-    var selectMazDateFormat = convertTime(parseInt(selectMax));
     var options = obj.xs;
-
+    
     for(var i = 0; i < options.length; i++) {
         var opt = convertTime(options[i]);
         console.log(opt);
@@ -203,6 +187,25 @@ async function chartIt1(yAxes,minTime,maxTime){
         el2.value = opt;
         selectMin.appendChild(el);
         selectMax.appendChild(el2);
+    }
+
+/* ------------------------------------select host/server for chart------------------------------ */
+    var selectHost = document.getElementById("selectHost");
+
+    var res = await fetch(baseURL + '/api');
+    var data = await res.json();
+    
+    for(item of data){
+        var options = item.host;
+        host = item.host;
+        console.log("host " + options);
+
+        var el = document.createElement("option");
+        
+        el.textContent = options;
+        el.value = options;
+        
+        selectHost.appendChild(el);      
     }
 }
 /* ------------------------------------console writing------------------------------ */

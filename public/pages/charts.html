@@ -22,6 +22,10 @@
     <div class="container_input">
         <div class="row">
             <h1 id='username'>Hello</h1>
+            <label style="margin-top: 5%;">Choose server:</label>
+            <select id="selectHost">
+                <option>Server</option>
+            </select>
             <label style="margin-top: 5%;">Choose axe Y parameter:</label>
             <select name="axeY" id="axeY">
                 <option value="temperature">Temperature</option>
@@ -30,11 +34,13 @@
                 <option value="downspeed">Down Speed</option>
                 <option value="upspeed">Up Speed</option>
             </select>
+            
         </div>
         <div class="row">
             <select id="selectMin">
                 <option>Choose min</option>
             </select>
+            
         </div>
         <div class="row">
             <select id="selectMax">
@@ -68,8 +74,9 @@
             const axeY = document.getElementById('axeY').value;
             const selectMin = document.getElementById('selectMin').value;
             const selectMax = document.getElementById('selectMax').value;
+            const selectHost = document.getElementById('selectHost').value;
             
-            chartIt1(axeY,selectMin,selectMax);
+            chartIt1(axeY,selectMin,selectMax,selectHost);
 
             console.clear();
         });   

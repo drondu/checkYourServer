@@ -74,55 +74,37 @@ app.post('/register', async (req, res) => {
             users.push(newUser);
             database.accounts.insert(newUser);
             
-            // console.log('User list', users);
             res.redirect('pages/registration_succesful.html');
-           // res.sendFile(path.join(__dirname,'pages/registration_succesful.html'));
-            //res.send("<br><div align ='center'><h2>Registration successful</h2></div><br><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
         } else {
-            //res.sendFile(path.join(__dirname,'pages/email_used.html'));
             res.redirect('pages/email_used.html');
-            //res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
         }
-    } catch{
+    }catch{
         res.send("Internal server error");
     }
 });
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 app.post('/login', async(req, res) =>{
-
-    
+ 
+    database.accounts.find({"email":req.body.email}, async  function (err,docs){ 
+        if (err) throw err;
         
-        database.accounts.find({"email":req.body.email}, async  function (err,docs){ 
-            if (err) throw err;
-            
-           
-
-           if(docs.length == 1){
-            const foundUser = docs[0];
-                const founUser_pass = foundUser.password;
-                try{
-                   const match = await bcrypt.compare(req.body.password,founUser_pass);
-                   if(match){
-                       res.status(200).json({user:foundUser});
-                   }else{
-                    res.status(401).json({message:"Your pass is invalid!!!!"});
-                   }
-                }catch{
-                    res.status(401).json({message:"Your pass is invalid!!!!"});
+        if(docs.length == 1){
+        const foundUser = docs[0];
+            const founUser_pass = foundUser.password;
+            try{
+                const match = await bcrypt.compare(req.body.password,founUser_pass);
+                if(match){
+                    res.status(200).json({user:foundUser});
+                }else{
+                res.status(401).json({message:"Your pass is invalid!!!!"});
                 }
-           }else{
-            res.status(404).json({message:"User not found!!!!"});
-           }
-           
-
-        });
-
-        //await sleep(100);
-
+            }catch{
+                res.status(401).json({message:"Your pass is invalid!!!!"});
+            }
+        }else{
+        res.status(404).json({message:"User not found!!!!"});
+        }
+    });
 });
 
 
