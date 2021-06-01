@@ -43,12 +43,15 @@ function processTooltipModel(model) {
 }
 
 
-async function axes(obj,yAxes){
+async function axes(obj,yAxes,user,host){
     var res = await fetch(baseURL + '/api');
     var data = await res.json();
     
     let temp = obj;
     for(item of data){
+        
+        if(item.username != user || item.host != host)
+            continue;
         
         temp.xs.push(item.timestamp);
         if(yAxes == "used") 
@@ -65,6 +68,7 @@ async function axes(obj,yAxes){
 
         if(yAxes == "upspeed")
             temp.ys.push(item.upSpeed);
+            
         if(yAxes == "used" || yAxes == "temperature" || yAxes == "available"){
             console.log("Host: " + item.host + " Name: "+ item.name + " Temperature: " + item.temperature + " Time: " + item.timestamp  + " Memory used: " + item.used + " Memory Available: " + item.available); 
         }else{
@@ -80,12 +84,14 @@ if (myChart1 ) {
     myChart1.destroy();  
 }
 
-async function chartIt1(yAxes,minTime,maxTime,host){
+async function chartIt1(yAxes,minTime,maxTime,user,host){
+    console.log("cevaaaaaaaaaaaaa");
+    console.log("usernameul " + user);
     const colors1 = ['#ff0000','#003366','#cccc00','#00cc00','#6600cc','#3399ff','#ff6600','#ff00ff','#990000', '#990099','#00ff00','#0000ff','#660066','#632064','#8e8a06'];
    
     let obj = {xs: [], ys:[]};
 
-    await axes(obj, yAxes);
+    await axes(obj, yAxes,user,host);
     console.log("minTime: "+convertTime(parseInt(minTime)));
     console.log("maxTime: "+convertTime(parseInt(maxTime)));
 
@@ -149,7 +155,6 @@ async function chartIt1(yAxes,minTime,maxTime,host){
 
     if (myChart1) {
         myChart1.destroy();
-     
     }
     myChart1 = new Chart(ctx, {
         type: 'bar',
@@ -205,6 +210,18 @@ async function chartIt1(yAxes,minTime,maxTime,host){
         el.textContent = options;
         el.value = options;
         
+//         //remove duplicates
+//         var $ = require( "jquery" );
+//         var map = {};
+//         $('select option').each(function () {
+//             if (map[this.value]) {
+//             $(this).remove()
+//         }
+
+//     map[this.value] = true;
+// })
+
+
         selectHost.appendChild(el);      
     }
 }

@@ -1,9 +1,9 @@
-{"host":"server1","name":"/dev/sda1","used":"16","available":"32","temperature":"","timestamp":1620715747260,"_id":"00WPOzP7g5RDsPsUnKNw6mkLi1HogC"}
-{"host":"rog","name":"eno2","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620716113077,"_id":"02ih08w2nUXDgIm3mQeC496o5RuQW3"}
-{"host":"rog","name":"/dev/nvme0n1p2","used":"13","available":"432","temperature":"26","timestamp":1620715622672,"_id":"03wYkV4NEFgeCVWDsmvP7y2n53BhZN"}
-{"host":"server0","name":"/dev/sda1","used":"16","available":"32","temperature":"","timestamp":1620715735060,"_id":"04XsMRgpxNVPMZ78Jvke5trHBp9N6R"}
-{"host":"rog","name":"eno2","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715770389,"_id":"05fbi01RUUyEWDoq0VhesmQYJh0E5K"}
-{"host":"rog","name":"mpqemubr0","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715887626,"_id":"06vzpU3ZM1QFoJqATMtgewSyNMwIWk"}
+{"username":"cristina","host":"server1","name":"/dev/sda1","used":"16","available":"32","temperature":"","timestamp":1620715747260,"_id":"00WPOzP7g5RDsPsUnKNw6mkLi1HogC"}
+{"username":"drondu","host":"rog","name":"eno2","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620716113077,"_id":"02ih08w2nUXDgIm3mQeC496o5RuQW3"}
+{"username":"drondu","host":"rog","name":"/dev/nvme0n1p2","used":"13","available":"432","temperature":"26","timestamp":1620715622672,"_id":"03wYkV4NEFgeCVWDsmvP7y2n53BhZN"}
+{"username":"drondu","host":"server0","name":"/dev/sda1","used":"16","available":"32","temperature":"","timestamp":1620715735060,"_id":"04XsMRgpxNVPMZ78Jvke5trHBp9N6R"}
+{"username":"drondu","host":"rog","name":"eno2","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715770389,"_id":"05fbi01RUUyEWDoq0VhesmQYJh0E5K"}
+{"username":"drondu","host":"rog","name":"mpqemubr0","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715887626,"_id":"06vzpU3ZM1QFoJqATMtgewSyNMwIWk"}
 {"host":"rog","name":"eno2","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715892635,"_id":"07PPYjp71YXzzByzsvDFdTAivb3KUL"}
 {"host":"rog","name":"tap-9416e2a6b08","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715639137,"_id":"07ke4F9p4iSpo838Ouc6uRCYoiLj8j"}
 {"host":"server1","name":"ens4","dwnSpeed":"0.00","upSpeed":"0.00","timestamp":1620715652537,"_id":"081piWPPlvWcPaCimgFwRV5v98b9fH"}
