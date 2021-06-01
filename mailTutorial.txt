@@ -1,0 +1,50 @@
+
+
+
+For installing it: 
+https://www.linux.com/training-tutorials/setup-mutt-gmail-centos-and-ubuntu/
+
+
+
+
+
+===============Example of muttrc: 
+# Me
+set from = "drondu98@gmail.com"
+set realname = "Daniel Drondu"
+m
+# My credentials
+# For 2FA issue and application token from:
+# https://security.google.com/settings/security/apppasswords
+set smtp_url = "smtp://drondu98@gmail.com@smtp.gmail.com:587/"
+set smtp_pass = "xmailrviefmxwnmk"
+set imap_user = "drondu98@gmail.com"
+set imap_pass = "xmailrviefmxwnmk"
+
+# My mailboxes
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+set sort = threads
+set editor = "vim"
+set smtp_authenticators = 'gssapi:login'
+
+# GnuPG bootstrap
+# source ~/.mutt/gpg.rc
+
+# Gmail-style keyboard shortcuts
+macro index,pager ga "<change-folder>=[Gmail]/All<tab><enter>" "Go to all mail"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
+macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index,pager e "<enter-command>unset trash\n <delete-message>" "Gmail archive message" # different from Gmail, but wanted to keep "y" to show folders.

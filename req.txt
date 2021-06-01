@@ -1,0 +1,68 @@
+
+
+**** ifstat ****
+sudo apt install ifstat
+
+**** ifconfig ****
+sudo apt install net-tools
+
+
+**** multipass ****
+snap install multipass
+
+
+**** ifstat ****
+sudo apt-get update -y
+sudo apt-get install -y ifstat
+
+
+**** smartctl ****
+sudo apt install smartmontools
+
+	
+**** hddtemp ****
+sudo apt install sshpass
+
+
+**** ssh server ****
+sudo apt-get install openssh-server
+
+
+**** find out disk type ****
+cat /sys/block/sda/queue/rotational -- 0 for ssd, 1 for hdd, error for m2
+
+
+========== DOCKER ============
+
+multipass launch --name *docker_name* --- to create the docker
+multipass shell docker_name --- to enter the docker
+
+--> install ifconfig
+--> install ifstat
+--> install smartctl
+--> install hddtemp
+--> install sshpass
+
+--> sudo passwd ubuntu
+	:::root --- pw
+--> ifconfig --- get ip
+--> ssh root@ip
+--> sudo nano /etc/ssh/sshd_config
+	::: PasswordAuthentication yes
+--> sudo systemctl restart sshd
+
+--> clone the repo
+
+
+
+----> CTRL+D to close the session
+
+
+
+========== GIT ===========
+
+--> ssh-keygen -t rsa -b 4096 -C "drondu98@gmail.com" 
+--> cat ~/.ssh/id_rsa.pub
+--> add the key to git
+--> git config --global user.email "drondu98@gmail.com"
+--> git config --global user.name "drondu"
