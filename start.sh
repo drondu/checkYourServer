@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ $UID != 0 ]]; then
+    echo "Please run this script with sudo:"
+    echo "sudo $0 $*"
+    exit 1
+fi
+
+
 
 ###########Aliases#################################
 start_disk()
@@ -10,6 +17,11 @@ start_disk()
 start_network()
 {
 	cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_cpu()
+{
+	cd cpuUsage && nohup ./sensors.sh </dev/null >/dev/null 2>&1 &
 }
 
 
@@ -39,11 +51,14 @@ prepare_env()
 	rm -rf net.log
 	cd ..
 	cd DBs
-	rm -rf net.db disk.db database.db
-	rm -rf diskUsageServer0.db diskUsageServer1.db netUsageServer0.db netUsageServer1.db
+	ls | grep -v 'createBigMamaDB.sh' | xargs rm	
 	cd ..
-	rm -rf hostname.txt 
+	cd pyHelpers
+	rm -rf hostname.txt
 	hostname > hostname.txt
+	rm -rf username.txt
+	get_username
+	cd .. 
 }
 
 start_aggregated_machines()
@@ -53,16 +68,22 @@ start_aggregated_machines()
 
 start_local_machine()
 {
-	start_disk | start_network
+	start_disk | start_network | start_cpu
 	create_db
+}
+
+get_username()
+{
+	echo "Enter username from webtool: " && read line
+	echo "$line" > username.txt
 }
 
 
 #==================jobs=============================
 
 echo "Starting scripts"
-	
+
 prepare_env
-start_local_machine | start_aggregated_machines
+start_local_machine #| start_aggregated_machines
 
 echo "Scripts are started"

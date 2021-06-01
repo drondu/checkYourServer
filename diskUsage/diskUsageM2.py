@@ -2,9 +2,11 @@
 import sys
 sys.path.append('../pyHelpers')
 
-from gethost import getHostName
+from gethost import getUserName
+from diskspace import getDiskSpace
 import timeandid as tid
-import time
+import subprocess
+
 
 fin = open('diskUsageStripped.txt','r')
 fin2 = open('diskTempStripped.txt', 'r')
@@ -18,35 +20,15 @@ for el in line:
 	if el.isdigit():
 		val += el
 
-# time.sleep(0.5)
+if int(val) >= 35:
+	err = open('diskErrors.txt', 'a')
+	err.write('Your disk temperature exceed with tmp: ' + val)
+	err.flush()
+	err.close()
+	subprocess.call('./mail.sh',shell=True)
 
-count = 0
-line = fin.readline()
-for el in line.split():
-	time.sleep(0.1)
-	if count == 0:
-		name = el
-	if count == 2:
-		el.rstrip()
-		temp = ''
-		for nb in el:
-			if nb.isdigit():
-				temp += nb		
-		used = temp
-	if count == 3:
-		el.rstrip()
-		temp = ''
-		for nb in el:
-			if nb.isdigit():
-				temp += nb
-		available = temp
-		
-	count+=1
-
-temp = '{"host":"' + getHostName()
-temp += '","name":"' + name 
-temp += '","used":"' + used 
-temp += '","available":"' + available
+temp = getUserName()
+temp += getDiskSpace(fin)
 temp += '","temperature":"' + val 
 temp += tid.getTimeStamp() + tid.getID() 
 # print('temp: ' + temp)			

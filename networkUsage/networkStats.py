@@ -3,7 +3,7 @@ import time
 import sys
 sys.path.append('../pyHelpers')
 
-from gethost import getHostName
+from gethost import getUserName
 import timeandid as tid
 import time
 
@@ -43,13 +43,13 @@ def readValues():
 			elif columnCnt >= 2:
 				columnCnt = 0
 			if columnCnt == 0:
-				temp = '{"host":"' + getHostName()
+				temp = getUserName()
 				temp += '","name":"' + names[namesCnt] 
 				temp += '","dwnSpeed":"' + el
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
 				temp += tid.getTimeStamp() + tid.getID()	
-				# print(temp)
+				print(temp)
 				fout.write(temp)
 				fout.flush()
 				temp = ''
