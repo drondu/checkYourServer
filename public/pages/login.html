@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<link rel="shortcut icon" href="#">
+	<title> Login </title>
+	<link type="text/css"  rel="stylesheet" href="styles/style_login.css" defer>
+</head>
+<body>
+	<div class='console-container'><span id='text'></span>
+        <div class='console-underscore' id='console'>&#95;
+        </div>
+    </div>
+
+	<div class='login_container'>
+		<form id='form_login'>
+		<!-- <form action="/login" method="POST"> -->
+			<fieldset>
+				<div>
+					<label>&nbsp;&nbsp;&nbsp;Email</label>
+					<input type ="email" id = 'email' name="email" placeholder="cristina@example.com" required>
+				</div>
+				<div>
+					<label>Password</label>
+					<input type="password" id = "password" name="password" required>
+				</div>
+				<button type ="reset">Reset</button>
+				<button type ="submit" >Submit</button>
+			</fieldset>
+		</form>
+		<div class='register_link'>
+        	<a href="./registration.html">Register</a>
+		</div>
+	</div>
+	<br><br>
+	<style>
+	@import url(https://fonts.googleapis.com/css?family=Khula:700);
+		body {
+		  background: #0673aa;
+		}
+		html, body { margin: 0; padding: 0; }
+		/* -----------------------------------------console writting--------------------------------------- */
+		.hidden {
+		  opacity:0;
+		}
+		.console-container {
+		  font-family:"Courier New", Courier, monospace;
+		  font-size:4em;
+		  text-align:center;
+		  height:200px;
+		  width:1000px;
+		  display:block;
+		  position:absolute;
+		  color:white;
+		  top:0;
+		  bottom:0;
+		  left:0;
+		  right:0;
+		  margin:auto;
+		  margin-top: 1%;
+		}
+		.console-underscore {
+		  display:inline-block;
+		  position:relative;
+		  top:-0.14em;
+		  left:10px;
+		}
+		/* -----------------------------------links--------------------------------- */
+		label{
+		  font-family:"Courier New", Courier, monospace;
+		  color: #ffffff;
+		  font-size:20px;
+		}  
+		a:link, a:visited {
+		  background-color: #31a0d8;
+		  color: white;
+		  padding: 14px 25px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  width: 300px;
+		  font-family:"Courier New", Courier, monospace;
+		  font-size: 30px;
+		}
+		a:hover, a:active {
+		  background-color: #2088bd;
+		}
+		/* ------------------------------------buttons------------------------------ */
+		button{
+			position: relative;
+			background-color: #31a0d8;
+			border: none;
+			font-size: 18px;
+			color: #FFFFFF;
+			padding: 10px;
+			width: 160px;
+			text-align: center;
+			transition-duration: 0.4s;
+			text-decoration: none;
+			overflow: hidden;
+			cursor: pointer;
+			font-family:"Courier New", Courier, monospace;
+		}
+		button:after {
+			content: "";
+			background: #31a0d8;
+			display: block;
+			position: absolute;
+			padding-top: 300%;
+			padding-left: 350%;
+			margin-left: -20px!important;
+			margin-top: -120%;
+			opacity: 0;
+			transition: all 0.8s
+		}
+		button:active:after {
+			padding: 0;
+			margin: 0;
+			opacity: 1;
+			transition: 0s
+		}
+		/* ------------------------------------login&register------------------------------ */
+
+		.login_container{
+		  font-family:"Courier New", Courier, monospace;
+		  font-size:4em;
+		  text-align:center;
+		  height:200px;
+		  width:1000px;
+		  display:block;
+		  position:absolute;
+		  color:white;
+		  top:0;
+		  bottom:0;
+		  left:0;
+		  right:0;
+		  margin:auto;
+		  margin-top: 10%;
+		}
+		.register_link{
+			margin-top: 10%;
+		}
+		fieldset{
+			border:1px solid ;
+			border-color:#ffffff;
+		}
+		input{
+			width: 30%;
+			height: 30px;
+			border-radius: 0%;
+			border: 1px solid #31a0d8;
+		}
+	  </style>
+	<script>
+
+		console.log("cevaaa");
+
+		document.getElementById('form_login').addEventListener("submit", event =>{
+			event.preventDefault();
+			const email = event.target[1].value;
+			const pass = event.target[2].value;
+			
+			const path = "http://localhost:3000/login";
+			const data = {email:email, password:pass}
+			console.log(path);
+			fetch(path, {  
+				method: 'POST', 
+				headers: {    
+					'Content-Type': 'application/json',  
+					},  
+				body: JSON.stringify(data),})
+				.then(response => response.json())
+				.then(res =>{
+					console.log(res);
+					localStorage.setItem("session",JSON.stringify(res));
+					window.location.href = "http://localhost:3000/charts.html"
+				})
+				.catch(err => {
+					console.log(err);
+				})
+		})
+		consoleText(['Login','Email','Password'], 'text',['white','white','white']);
+	
+		function consoleText(words, id, colors) {
+		  if (colors === undefined) colors = ['#fff'];
+		  var visible = true;
+		  var con = document.getElementById('console');
+		  var letterCount = 1;
+		  var x = 1;
+		  var waiting = false;
+		  var target = document.getElementById(id)
+		  target.setAttribute('style', 'color:' + colors[0])
+		  window.setInterval(function() {
+	
+			if (letterCount === 0 && waiting === false) {
+			  waiting = true;
+			  target.innerHTML = words[0].substring(0, letterCount)
+			  window.setTimeout(function() {
+				var usedColor = colors.shift();
+				colors.push(usedColor);
+				var usedWord = words.shift();
+				words.push(usedWord);
+				x = 1;
+				target.setAttribute('style', 'color:' + colors[0])
+				letterCount += x;
+				waiting = false;
+			  }, 1000)
+			} else if (letterCount === words[0].length + 1 && waiting === false) {
+			  waiting = true;
+			  window.setTimeout(function() {
+				x = -1;
+				letterCount += x;
+				waiting = false;
+			  }, 1000)
+			} else if (waiting === false) {
+			  target.innerHTML = words[0].substring(0, letterCount)
+			  letterCount += x;
+			}
+		  }, 120)
+		  window.setInterval(function() {
+			if (visible === true) {
+			  con.className = 'console-underscore hidden'
+			  visible = false;
+	
+			} else {
+			  con.className = 'console-underscore'
+	
+			  visible = true;
+			}
+		  }, 400)
+		}
+		</script>
+</body>
+</html>

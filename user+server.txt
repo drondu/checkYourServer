@@ -1,0 +1,5 @@
+{"username":"cristina","host":"server0"}
+{"username":"cristina","host":"server1"}
+{"username":"cristina","host":"server3"}
+{"username":"drondu","host":"server1"}
+{"username":"drondu","host":"server2"}

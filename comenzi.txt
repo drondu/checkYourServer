@@ -1,0 +1,40 @@
+de fiecare data cand vreau sa pornesc serverul:
+npm run dev-start
+start live server pe index.html
+------------------pentru git--------------
+git status
+git add *
+git commit -m "com"
+git push origin webTool 
+
+
+---------------PENTRU INSTALRE SI RULARE------------------
+npm install body-parser --save
+npm install express-session --save
+npm install passport passport-local --save
+npm install -g nodemon
+npm install --save-dev nodemon
+npm install body-parser --save
+npm install express
+npm install express bcrypt body-parser --save
+
+------- ca sa ii dai start -----
+cd checkYourServer
+sudo npm run dev-start 
+
+---------bug------------
+pt a afisa graficele,dai submit, apoi selectezi min si max
+apoi iar submit ca sa iti afiseze graficul cu range-ul ales
+
+
+---------usernameul-----------
+se afiseaza in chart.html
+"
+const userSession = localStorage.getItem("session");
+const user = JSON.parse(userSession);
+const header = document.getElementById("username");
+console.log(header);
+console.log(user);
+console.log(userSession);
+header.innerHTML = "Hello, "+ user.user.username + "!";
+"

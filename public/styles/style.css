@@ -1,0 +1,287 @@
+#username{
+  font-family: "Courier New", Courier, monospace;
+  color:#ffffff;
+  margin-top: 6%;
+}
+
+.container_input{
+    margin-top: 10%;
+    margin-left: 2%;
+}
+.row{
+  position: relative;
+    margin-top: 2%;
+    max-width: 30%;
+    margin-left: 3%;
+}
+
+.container_graphs{
+    margin-top: 5%;
+    margin-left: 2%;
+    max-width: 95%;
+}
+.container_graphs_1{
+    height: 30%;
+    /* flex: 0 0 auto; */
+    width: 100%;
+}
+/* -----------------------------------------tooltip--------------------------------------- */
+#tooltip {
+    position: absolute;
+    display: none;
+    font-family: "Courier New", Courier, monospace;
+    width: 100px;
+    transform: translateX(-50%);
+    text-align: center;
+    background: #00aaff;
+    box-shadow: 0px 0px 2px #ffffff;
+    color: #ffffff;
+}
+#tooltip .tooltip-label {
+    padding: 6px 2px;
+    color: #ffffff;
+    font-size: 12px;
+}
+#tooltip .tooltip-value {
+   padding: 0 2px 8px 2px;
+}
+
+#tooltip .tooltip-value .value {
+    font-size: 14px;
+}
+#tooltip::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #3abeff;
+  display: block;
+  bottom: -27px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* -----------------------------------------submit button--------------------------------------- */
+.button{
+    position: relative;
+    background-color: #3abeff;
+    border: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    font-family:"Courier New", Courier, monospace;
+}
+    
+.button:after {
+    content: "";
+    background: #31a0d8;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+ }
+    
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
+
+/* -----------------------------------------custom-select--------------------------------------- */
+
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+.custom-select select{
+   display: none;
+}
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 0 2px 0 2px;
+    border-style: solid;
+    border-color: #3abeff;
+    width: 300px;
+    height: 50px;
+}
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 50px;
+    background: #3abeff;
+    cursor: pointer;
+    height: 70px;
+}
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #31a0d8;
+    border-top: 0;
+    background: #31a0d8;
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px 0 22px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-family:"Courier New", Courier, monospace;
+}
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #31a0d8;
+}
+.custom-option.selected {
+    color: #ffffff;
+    background-color: #3abeff;
+}
+.arrow {
+    position: relative;
+    height: 15px;
+    width: 15px;
+}
+.arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
+}
+.arrow::before {
+    left: 5px;
+    transform: rotate(45deg);
+    background-color: #ffffff;
+}
+.arrow::after {
+    left: 15px;
+    transform: rotate(-45deg);
+    background-color: #ffffff;
+}
+.open .arrow::before {
+    left: 5px;
+    transform: rotate(-45deg);
+}
+.open .arrow::after {
+    left: 15px;
+    transform: rotate(45deg);
+}
+
+/* -----------------------------------------console writting--------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+body {
+  background: #0673aa;
+}
+.hidden {
+  opacity:0;
+}
+.console-container {
+  font-family:"Courier New", Courier, monospace;
+  font-size:4em;
+  text-align:center;
+  height:200px;
+  width:1000px;
+  display:block;
+  position:absolute;
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  margin-top: 1%;;
+}
+.console-underscore {
+  display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
+label{
+  font-family:"Courier New", Courier, monospace;
+  color: #ffffff;
+  font-size:20px;
+}
+
+
+canvas{
+  background-color:#ffffff;
+}
+
+select {
+  font-family: "Courier New", Courier, monospace;
+  -moz-appearance: none;
+  appearance: none;
+  color: #FFFFFF;
+  font-size: 18px;
+  border: 1px solid var(--baseFg);
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: var(--radius);
+  background-color: #3abeff;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 30px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom; 
+  background-image: url("https://www.freeiconspng.com/thumbs/white-arrow-png/white-down-arrow-png-2.png");
+}
+
+select:hover {
+  background-image: #00a9fd;
+}
+
+select:active {
+ 
+  color:  #00aaff;
+  border-color:  #00aaff;
+  background-color:  #00aaff;
+}
+
+select:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #00aaff;
+}
+

@@ -1,0 +1,120 @@
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+		body {
+		  background: #0673aa;
+		}
+		html, body { margin: 0; padding: 0; }
+		/* -----------------------------------------console writting--------------------------------------- */
+		.hidden {
+		  opacity:0;
+		}
+		.console-container {
+		  font-family:"Courier New", Courier, monospace;
+		  font-size:4em;
+		  text-align:center;
+		  height:200px;
+		  width:1000px;
+		  display:block;
+		  position:absolute;
+		  color:white;
+		  top:0;
+		  bottom:0;
+		  left:0;
+		  right:0;
+		  margin:auto;
+		  margin-top: 1%;
+		}
+		.console-underscore {
+		  display:inline-block;
+		  position:relative;
+		  top:-0.14em;
+		  left:10px;
+		}
+		label{
+		  font-family:"Courier New", Courier, monospace;
+		  color: #ffffff;
+		  font-size:20px;
+		}  
+		
+		a:link, a:visited {
+		  background-color: #31a0d8;
+		  color: white;
+		  padding: 14px 25px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  width: 300px;
+		  font-family:"Courier New", Courier, monospace;
+		  font-size: 30px;
+		}
+	
+		a:hover, a:active {
+		  background-color: #2088bd;
+		}
+
+		button{
+			position: relative;
+			background-color: #31a0d8;
+			border: none;
+			font-size: 18px;
+			color: #FFFFFF;
+			padding: 10px;
+			width: 160px;
+			text-align: center;
+			transition-duration: 0.4s;
+			text-decoration: none;
+			overflow: hidden;
+			cursor: pointer;
+			font-family:"Courier New", Courier, monospace;
+		}
+			
+		button:after {
+			content: "";
+			background: #31a0d8;
+			display: block;
+			position: absolute;
+			padding-top: 300%;
+			padding-left: 350%;
+			margin-left: -20px!important;
+			margin-top: -120%;
+			opacity: 0;
+			transition: all 0.8s
+		}
+			
+		button:active:after {
+			padding: 0;
+			margin: 0;
+			opacity: 1;
+			transition: 0s
+		}
+		.register_container{
+		  font-family:"Courier New", Courier, monospace;
+		  font-size:4em;
+		  text-align:center;
+		  height:200px;
+		  width:1000px;
+		  display:block;
+		  position:absolute;
+		  color:white;
+		  top:0;
+		  bottom:0;
+		  left:0;
+		  right:0;
+		  margin:auto;
+		  margin-top: 10%;
+		}
+
+		.login_link{
+			margin-top: 10%;
+		}
+
+		fieldset{
+			border:1px solid ;
+			border-color:#ffffff;
+		}
+
+		input{
+			width: 30%;
+			height: 30px;
+			border-radius: 0%;
+			border: 1px solid #31a0d8;
+		}
