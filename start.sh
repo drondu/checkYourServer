@@ -32,7 +32,7 @@ create_db()
 
 start_server0() 
 { 
-	sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
+	nohup sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
 }
 
 start_server1() 
@@ -78,12 +78,17 @@ get_username()
 	echo "$line" > username.txt
 }
 
+start_web_app()
+{
+	nohup npm run dev-start </dev/null >/dev/null 2>&1 &
+}
+
 
 #==================jobs=============================
 
 echo "Starting scripts"
 
 prepare_env
-start_local_machine #| start_aggregated_machines
+start_local_machine #| start_aggregated_machines #| start_web_app
 
 echo "Scripts are started"

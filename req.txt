@@ -1,4 +1,8 @@
 
+************
+don't forget to give permissions to sh scripts
+
+
 
 **** ifstat ****
 sudo apt install ifstat

@@ -13,12 +13,14 @@ do
 	if [ $value == $ssd ]
 		then
 			echo "hopa, ai ssd"
+			sudo smartctl -A /dev/nvme0 > diskTemp.txt
+			grep -i "temperature:" diskTemp.txt > diskTempStripped.txt
+			sudo python3 diskUsageM2.py
 	elif [ $value == $hdd ]
 		then
 			echo "hopa, ai hdd"
 			sudo hddtemp /dev/sd[abcdefgh] > hddTemp.txt
 			grep -i "" hddTemp.txt > hddTempStripped.txt
-
 	else
 		echo "hopa, ai m2"
 		sudo smartctl -A /dev/nvme0 > diskTemp.txt

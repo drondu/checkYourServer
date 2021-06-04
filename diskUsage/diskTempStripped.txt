@@ -1,1 +1,1 @@
-Temperature:                        30 Celsius
+Temperature:                        27 Celsius

@@ -8,7 +8,7 @@ import time
 
 
 fin = open('hddTemp.txt', 'r')
-fout = open('../DBs/diskUsageMother.db', 'a')
+fout = open('../diskUsageMother.db', 'a')
 
 names = []
 tmps = []
