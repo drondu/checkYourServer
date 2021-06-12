@@ -44,6 +44,13 @@ start_fan()
 	cd cpuFan && nohup ./cpufan.sh </dev/null >/dev/null 2>&1 &
 }
 
+start_powerusage()
+{
+	cd powerUsage && nohup ./powerusage.sh </dev/null >/dev/null 2>&1 &
+}
+
+
+
 start_servers()
 {
 	echo "Starting servers"
@@ -91,7 +98,8 @@ start_aggregated_machines()
 
 start_local_machine()
 {
-	start_disk | start_network | start_cpu | start_nrproc | start_ramusage | start_fan
+	start_disk | start_network | start_cpu | start_ramusage | start_fan | start_powerusage
+	start_nrproc
 	create_db
 }
 

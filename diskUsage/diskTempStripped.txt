@@ -1,1 +1,1 @@
-Temperature:                        36 Celsius
+Temperature:                        33 Celsius

@@ -9,6 +9,10 @@ killall network.sh
 killall transferDB.sh
 killall createBigMamaDB.sh
 killall sensors.sh
+killall powerusage.sh
+killall procNR.sh
+killall ramUsage.sh
+killall cpufan.sh
 killall sh
 killall node
 killall git

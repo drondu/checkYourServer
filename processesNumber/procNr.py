@@ -10,6 +10,7 @@ import timeandid as tid
 fin = open('procNr.txt', 'r')
 fout = open('../DBs/procNr.db', 'a')
 
+
 line = fin.readline()
 line = line.split()
 
@@ -17,11 +18,12 @@ dbtext = getUserName()
 
 cnt = 0
 for el in line:
+	# dbtext += el
 	if cnt % 2 == 0:
 		cnt += 1
 		continue
 	if cnt == 1:
-		dbtext += '","totalpr":"' + el
+		dbtext += '","totalprocs":"' + el
 	elif cnt == 3:
 		dbtext += '","running":"' + el
 	elif cnt == 5:
@@ -35,10 +37,10 @@ for el in line:
 dbtext += tid.getTimeStamp() + tid.getID()
 print(dbtext)
 
-fout.write(dbtext)
 fout.flush()
+fout.write(dbtext)
 
-fin.close()
+# fin.close()
 fout.close()
 
 
