@@ -8,7 +8,7 @@ from diskspace import getDiskSpace
 import timeandid as tid
 
 fin = open('cpuFan.txt', 'r')
-fout = open('../DBs/cpuFan.db', 'a')
+fout = open('cpuFan.db', 'a')
 
 dbtext = getUserName()
 

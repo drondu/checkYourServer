@@ -8,7 +8,7 @@ from diskspace import getDiskSpace
 import timeandid as tid
 
 fin = open('procNr.txt', 'r')
-fout = open('../DBs/procNr.db', 'a')
+fout = open('procNr.db', 'a')
 
 line = fin.readline()
 line = line.split()

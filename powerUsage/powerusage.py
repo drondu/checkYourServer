@@ -7,7 +7,7 @@ from gethost import getUserName
 import timeandid as tid
 
 fin = open('drawnWats.txt', 'r')
-fout = open('../DBs/watsUsage.db', 'a')
+fout = open('watsUsage.db', 'a')
 
 dbtext = getUserName()
 

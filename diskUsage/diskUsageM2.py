@@ -11,7 +11,7 @@ import subprocess
 
 fin = open('diskUsageStripped.txt','r')
 fin2 = open('diskTempStripped.txt', 'r')
-fout = open('../DBs/diskUsageMother.db', 'a')
+fout = open('diskUsage.db', 'a')
 
 line = fin2.readline()
 line = line.rstrip()

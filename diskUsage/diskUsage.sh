@@ -19,6 +19,7 @@ do
 		then
 			sudo hddtemp /dev/sd[abcdefgh] > hddTemp.txt
 			grep -i "" hddTemp.txt > hddTempStripped.txt
+			sudo python3 diskUsageHDD.py
 	else
 		sudo smartctl -A /dev/nvme0 > diskTemp.txt
 		grep -i "temperature:" diskTemp.txt > diskTempStripped.txt
