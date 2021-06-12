@@ -1,0 +1,3 @@
+/dev/sda: SanDisk SD7SN6S-256G-100 6              �: 36°C
+/dev/sda: WDC WD6401AALS-00J7B0: 31°C
+/dev/sdb: WDC WD7501AALS-00J7B0: 30°C

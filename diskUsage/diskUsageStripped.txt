@@ -1,1 +1,1 @@
-/dev/sda1       4.7G  1.6G  3.2G  33% /
+/dev/nvme0n1p2  468G   63G  382G  15% /
