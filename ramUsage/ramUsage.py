@@ -4,7 +4,6 @@ import sys
 sys.path.append('../pyHelpers')
 
 from gethost import getUserName
-from diskspace import getDiskSpace
 import timeandid as tid
 
 fin = open('ramStats.txt', 'r')
@@ -30,9 +29,9 @@ while line:
 	line = line.split()
 	dbtext = getUserName()
 	if linecnt == 1:
-		dbtext += '"type":"ram",'
+		dbtext += '","type":"ram",'
 	elif linecnt == 2:
-		dbtext += '"type":"swap",'
+		dbtext += '","type":"swap",'
 	elif linecnt == 3:
 		break;
 	cnt = 0		
@@ -90,7 +89,7 @@ while line:
 
 	
 	dbtext += tid.getTimeStamp() + tid.getID()
-	# print(dbtext)
+	print(dbtext)
 	fout.write(dbtext)
 	line = fin.readline()
 	fout.flush()

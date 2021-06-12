@@ -5,5 +5,5 @@ do
 	free -th > ramStats.txt
 	sudo python3 ramUsage.py
 
-	sleep 2
+	sleep 1
 done

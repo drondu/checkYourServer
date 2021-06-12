@@ -7,4 +7,4 @@ def getHostName():
 def getUserName():
 	uin = open('../pyHelpers/username.txt', 'r')
 	name = uin.readline()
-	return getHostName() + '","uname:","' + name.rstrip('\n')
+	return getHostName() + '","uname":"' + name.rstrip('\n')

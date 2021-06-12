@@ -25,7 +25,7 @@ def getDiskSpace(fin):
 		count+=1
 
 
-	temp = '","name":"' + name 
+	temp = '","diskname":"' + name 
 	temp += '","used":"' + used 
 	temp += '","available":"' + available
 

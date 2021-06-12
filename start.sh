@@ -24,20 +24,43 @@ start_cpu()
 	cd cpuUsage && nohup ./sensors.sh </dev/null >/dev/null 2>&1 &
 }
 
+start_nrproc()
+{
+	cd processesNumber && nohup ./procNr.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_ramusage()
+{
+	cd ramUsage && nohup ./ramUsage.sh </dev/null >/dev/null 2>&1 &
+}
 
 create_db() 
 {
 	cd DBs && nohup ./createBigMamaDB.sh </dev/null >/dev/null 2>&1 &
 }
 
+start_fan()
+{
+	cd cpuFan && nohup ./cpufan.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_servers()
+{
+	echo "Starting servers"
+	#ssh uname@ip 'sudo nohup /*path_to_app_folder*/start.sh &'
+	echo "Servers started"
+}
+
+###Used in testing
 start_server0() 
 { 
-	nohup sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && nohup ./start.sh &' 
+
+	nohup sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && sudo nohup ./start.sh &' 
 }
 
 start_server1() 
 { 
-	sshpass -proot ssh ubuntu@10.238.184.245 'cd checkYourServer && nohup ./start.sh &' 
+	sshpass -proot ssh ubuntu@10.238.184.245 'cd checkYourServer && sudo nohup ./start.sh &' 
 }
 
 
@@ -68,7 +91,7 @@ start_aggregated_machines()
 
 start_local_machine()
 {
-	start_disk | start_network | start_cpu
+	start_disk | start_network | start_cpu | start_nrproc | start_ramusage | start_fan
 	create_db
 }
 

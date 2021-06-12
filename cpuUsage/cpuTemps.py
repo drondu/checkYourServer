@@ -26,6 +26,7 @@ temp += '"core_avg":"' + str(avg/len(temps))
 temp += tid.getTimeStamp() + tid.getID() 
 
 
+# print(temp)
 fout.write(temp)
 fout.flush()
 fout.close()

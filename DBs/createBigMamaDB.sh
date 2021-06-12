@@ -7,6 +7,11 @@ do
 	cat diskUsage*.db >> ../database.db 
 	cat netUsage*.db >> ../database.db
 	cat cpuUsage*.db >> ../database.db 
+	cat ramUsage*.db >> ../database.db
+	cat procNr*.db >> ../database.db
+	cat cpuFan*.db >> ../database.db
 
-	rm -rf diskUsage* netUsage* cpuUsage*
+
+
+	rm -rf diskUsage* netUsage* cpuUsage* ramUsage* procNr* cpuFan*
 done

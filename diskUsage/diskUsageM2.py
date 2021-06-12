@@ -32,7 +32,7 @@ temp = getUserName()
 temp += getDiskSpace(fin)
 temp += '","temperature":"' + val 
 temp += tid.getTimeStamp() + tid.getID() 
-# print('temp: ' + temp)			
+# print(temp)			
 fout.write(temp)
 fout.flush()
 

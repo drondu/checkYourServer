@@ -44,7 +44,7 @@ def readValues():
 				columnCnt = 0
 			if columnCnt == 0:
 				temp = getUserName()
-				temp += '","name":"' + names[namesCnt] 
+				temp += '","net_driver":"' + names[namesCnt] 
 				temp += '","dwnSpeed":"' + el
 			elif columnCnt == 1:
 				temp += '","upSpeed":"' + el
