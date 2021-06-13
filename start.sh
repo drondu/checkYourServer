@@ -5,7 +5,29 @@
 ###########Aliases#################################
 start_disk() { cd diskUsage && nohup ./diskUsage.sh </dev/null >/dev/null 2>&1 & }
 start_network() { cd networkUsage && nohup ./network.sh </dev/null >/dev/null 2>&1 & }
+start_nrproc()
+{
+	cd processesNumber && nohup ./procNr.sh </dev/null >/dev/null 2>&1 &
+}
 
+start_ramusage()
+{
+	cd ramUsage && nohup ./ramUsage.sh </dev/null >/dev/null 2>&1 &
+}
+start_fan()
+{
+	cd cpuFan && nohup ./cpufan.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_powerusage()
+{
+	cd powerUsage && nohup ./powerusage.sh </dev/null >/dev/null 2>&1 &
+}
+
+start_cpu()
+{
+	cd cpuUsage && nohup ./sensors.sh </dev/null >/dev/null 2>&1 &
+}
 
 ##########Functions##############################
 prepare_env()
@@ -22,7 +44,7 @@ prepare_env()
 
 start_local_machine()
 {
-	start_network | start_disk
+	start_network | start_disk | start_ramusage | start_fan | start_powerusage | start_nrproc | start_cpu
 }
 
 transfer_dbs()

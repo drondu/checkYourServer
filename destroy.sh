@@ -6,3 +6,14 @@ killall python3
 killall network.sh
 killall sleep
 killall transferDB.sh
+killall sensors.sh
+killall powerusage.sh
+killall procNR.sh
+killall ramUsage.sh
+killall cpufan.sh
+killall sh
+killall node
+killall git
+killall pager
+killall npm
+

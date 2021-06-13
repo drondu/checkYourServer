@@ -9,7 +9,7 @@ import time
 
 fin1 = open('estbConn.txt','r')
 fin2 = open('lstnConn.txt','r')
-fout = open('connectionsUsage', 'a')
+fout = open('connectionsUsage.db', 'a')
 
 
 dbtext = getUserName()
