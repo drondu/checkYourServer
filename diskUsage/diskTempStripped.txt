@@ -1,1 +1,1 @@
-Temperature:                        33 Celsius
+Temperature:                        45 Celsius

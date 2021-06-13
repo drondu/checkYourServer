@@ -1,1 +1,1 @@
-/dev/nvme0n1p2  468G   63G  382G  15% /
+/dev/nvme0n1p2  468G   65G  380G  15% /

@@ -6,7 +6,6 @@ killall diskUsage.sh
 killall ifstat
 killall python3
 killall network.sh
-killall transferDB.sh
 killall createBigMamaDB.sh
 killall sensors.sh
 killall powerusage.sh

@@ -11,6 +11,7 @@ do
 	cat procNr*.db >> ../database.db
 	cat cpuFan*.db >> ../database.db
 	cat watsUsage*.db >> ../database.db
+	cat connectionsUsage*.db >> ../database.db
 
-	rm -rf diskUsage* netUsage* cpuUsage* ramUsage* procNr* cpuFan* watsUsage*
+	rm -rf diskUsage* netUsage* cpuUsage* ramUsage* procNr* cpuFan* watsUsage* connectionsUsage*
 done

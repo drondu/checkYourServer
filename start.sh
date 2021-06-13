@@ -55,20 +55,10 @@ start_servers()
 {
 	echo "Starting servers"
 	#ssh uname@ip 'sudo nohup /*path_to_app_folder*/start.sh &'
+	#scp  pyHelpers/username.txt uname@ip:~/path_to_app_folder/pyHelpers/
 	echo "Servers started"
 }
 
-###Used in testing
-start_server0() 
-{ 
-
-	nohup sshpass -proot ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && sudo nohup ./start.sh &' 
-}
-
-start_server1() 
-{ 
-	sshpass -proot ssh ubuntu@10.238.184.245 'cd checkYourServer && sudo nohup ./start.sh &' 
-}
 
 
 ##########Functions##############################
@@ -91,10 +81,6 @@ prepare_env()
 	cd .. 
 }
 
-start_aggregated_machines()
-{
-	start_server0 | start_server1
-}
 
 start_local_machine()
 {
@@ -120,6 +106,9 @@ start_web_app()
 echo "Starting scripts"
 
 prepare_env
-start_local_machine #| start_aggregated_machines #| start_web_app
+ssh ubuntu@10.238.184.75 'cd licenta/checkYourServer/ && sudo nohup ./start.sh &'
+start_local_machine 
+
+#| start_web_app
 
 echo "Scripts are started"
