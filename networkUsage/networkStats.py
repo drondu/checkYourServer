@@ -33,7 +33,7 @@ def readValues():
 	line = fin.readline()
 	while line:
 		# print("john")
-		fout = open('../DBs/netUsageMother.db', 'a')
+		fout = open('netUsageMother.db', 'a')
 		time.sleep(1)
 		columnCnt = 0
 		namesCnt = 0

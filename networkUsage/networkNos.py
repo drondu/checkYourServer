@@ -22,7 +22,7 @@ dbtext += '","lstnconn":"' + temp;
 
 dbtext += tid.getTimeStamp() + tid.getID()
 
-# print(dbtext)
+print(dbtext)
 fout.write(dbtext)
 
 
