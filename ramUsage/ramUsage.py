@@ -7,7 +7,7 @@ from gethost import getUserName
 import timeandid as tid
 
 fin = open('ramStats.txt', 'r')
-fout = open('../DBs/ramUsage.db', 'a')
+fout = open('ramUsage.db', 'a')
 
 line = fin.readline()
 line = fin.readline()
